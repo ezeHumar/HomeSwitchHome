@@ -1,0 +1,24 @@
+<h1>Residencias</h1>
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Ubicacion</th>
+    <th>Capacidad</th>
+    <th>Fotos</th>
+    <th>Editar</th>
+    <th>Eliminar</th>
+  </tr>
+  <%@residences.each do |residence|%>
+  <tr>
+    <td><%= residence.name %></td>
+    <td><%= residence.location %></td>
+    <td><%= residence.capacity %></td>
+    <td><%= residence.photos %></td>
+    <td>
+      <%= link_to 'Editar', edit_residence_path(residence), class:"btn btn-info" %>
+
+    </td>
+    <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+  </tr>
+ <%end%>
+</table>
