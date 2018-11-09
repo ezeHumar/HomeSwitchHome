@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: MyString
+  residence_id: 1
+  email: MyString
+  amount: 1.5
+
+two:
+  date: MyString
+  residence_id: 1
+  email: MyString
+  amount: 1.5
