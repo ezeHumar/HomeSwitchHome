@@ -15,10 +15,15 @@
     <td><%= residence.capacity %></td>
     <td><%= residence.photos %></td>
     <td>
-      <%= link_to 'Editar', edit_residence_path(residence), class:"btn btn-info" %>
-
+      <%= link_to edit_residence_path(residence), class:"btn btn-info" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <%end%>
     </td>
-    <td><button type="button" class="btn btn-danger">Eliminar</button></td>
+    <td>
+      <%= link_to edit_residence_path(residence), class:"btn btn-danger" do %>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+      <%end%>
+    </td>
   </tr>
  <%end%>
 </table>
