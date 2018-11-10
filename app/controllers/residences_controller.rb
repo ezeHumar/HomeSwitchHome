@@ -16,6 +16,7 @@ class ResidencesController < ApplicationController
   def destroy
     @residence = Residence.destroy
   end
+  
   def edit
     # params = { id: 7}
     @residence = Residence.find(params[:id])
