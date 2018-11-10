@@ -17,8 +17,20 @@ class ResidencesController < ApplicationController
     @residence = Residence.destroy
   end
   def edit
-    
+    # params = { id: 7}
+    @residence = Residence.find(params[:id])
   end
+
+  def update
+    @residence = Residence.find(params[:id])
+
+    if @residence.update(residence_params)
+      redirect_to residence_path, notice: 'La residencia se ha editado con éxito'
+    else
+      render :edit
+    end
+  end
+
   private
   def residence_params
     params.require(:residence).permit(:name, :location, :capacity, :photos)

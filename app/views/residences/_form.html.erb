@@ -1,0 +1,7 @@
+<%= simple_form_for @residence do |residence| %>
+  <%= residence.input :name, label: 'Nombre' %>
+  <%= residence.input :location, label: 'Ubicacion' %>
+  <%= residence.input :capacity, label: 'Capacidad' %>
+  <%= residence.input :photos ,label: 'URL'%>
+  <%= residence.button :submit %>
+<% end %>
