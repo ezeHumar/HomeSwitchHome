@@ -5,8 +5,8 @@
     <th>Ubicacion</th>
     <th>Capacidad</th>
     <th>Fotos</th>
-    <th>Editar</th>
-    <th>Eliminar</th>
+    <!--<th>Editar</th>
+    <th>Eliminar</th>-->
   </tr>
   <%@residences.each do |residence|%>
   <tr>
@@ -27,3 +27,7 @@
   </tr>
  <%end%>
 </table>
+
+<%= link_to new_residence_path, class: 'btn btn-primary' do %>
+  <i class="fa fa-plus-square" aria-hidden="true"></i>
+<%end%>
