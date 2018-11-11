@@ -2,6 +2,15 @@
 <html>
   <head>
     <title>HomeSwitchHome</title>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <% link_to residences_path do %>
+           <%= image_tag 'HSH-Logo', width: 50, height: 50 %>
+        <%end%>
+        <img src="app/assets/images/HSH-Logo" width="30" height="30" class="d-inline-block align-top" alt="">
+        HomeSwitchHome
+      </a>
+    </nav>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

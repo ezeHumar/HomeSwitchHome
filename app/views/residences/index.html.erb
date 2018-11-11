@@ -20,10 +20,9 @@
       <%end%>
     </td>
     <td>
-      <%= link_to residence, method: :delete, class: 'btn btn-danger',
-          data: { confirm: '¿Realmente quiere eliminar la residencia?' } do %>
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        <%end%>
+      <%= link_to edit_residence_path(residence), class:"btn btn-danger" do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <%end%>
     </td>
   </tr>
  <%end%>

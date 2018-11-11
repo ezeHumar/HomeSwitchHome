@@ -1,4 +1,7 @@
 class ResidencesController < ApplicationController
+  def show
+    redirect_to residences_path
+  end
   def index
     @residences = Residence.all
   end
