@@ -5,8 +5,7 @@
     <th>Ubicacion</th>
     <th>Capacidad</th>
     <th>Fotos</th>
-    <th>Editar</th>
-    <th>Eliminar</th>
+    <th>Acciones</th>
   </tr>
   <%@residences.each do |residence|%>
   <tr>
@@ -18,8 +17,6 @@
       <%= link_to edit_residence_path(residence), class:"btn btn-info" do %>
         <i class="fa fa-pencil" aria-hidden="true"></i>
       <%end%>
-    </td>
-    <td>
       <%= link_to edit_residence_path(residence), class:"btn btn-danger" do %>
         <i class="fa fa-trash" aria-hidden="true"></i>
       <%end%>
