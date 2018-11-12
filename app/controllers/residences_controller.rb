@@ -18,12 +18,12 @@ class ResidencesController < ApplicationController
   end
 
   def destroy
-    @residence=Residence.find(params[:id])
+    residence = Residence.find(params[:id])
 
-    if @residence.destroy
-      redirect_to residence_path, notice:"La residencia '#{@residence.name}' ha sido eliminada exitosamente"
+    if residence.destroy
+      redirect_to residence_path, notice: "La residencia '#{residence.name}' ha sido eliminada exitosamente"
     else
-      redirect_to residences_path, notice:"No se ha podido eliminar la residencia '#{@residence.name}'"
+      redirect_to residences_path, notice: "No se ha podido eliminar la residencia '#{residence.name}'"
     end
   end
 
