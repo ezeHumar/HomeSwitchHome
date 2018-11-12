@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_11_09_121812) do
 
   create_table "auctions", force: :cascade do |t|
-    t.string "date"
+    t.date "date"
     t.integer "residence_id"
     t.string "email"
     t.float "amount"

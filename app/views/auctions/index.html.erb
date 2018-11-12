@@ -1,3 +1,31 @@
 <br>
 <h1>Subastas</h1>
-<%= link_to 'Ingresar a Subasta', auctions_path, class: 'btn btn-info'%>
+
+
+<table class="table">
+  <tr>
+    <th>Id. De la residencia</th>
+    <th>Fecha</th>
+    <th>Precio actual</th>
+    <th>Mejor postor</th>
+    <th>Acciones</th>
+  </tr>
+  <%@auctions.each do |auction|%>
+  <tr>
+    <td><%= auction.residence_id %></td>
+    <td><%= auction.date %></td>
+    <td><%= auction.amount %></td>
+    <td><%= auction.email %></td>
+    <td>
+      <%= link_to edit_auction_path(auction), class:"btn btn-info" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <%end%>
+      <%= link_to auction, method: :delete, class:"btn btn-danger", data: { confirm: '¿Quiere eliminar la subasta realmente?' } do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <%end%>
+    </td>
+  </tr>
+ <%end%>
+</table>
+
+<%= link_to 'Agregar subasta', new_auction_path, class: 'btn btn-info'%>
