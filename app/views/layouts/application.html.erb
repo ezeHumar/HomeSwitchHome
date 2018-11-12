@@ -2,6 +2,13 @@
 <html>
   <head>
     <title>HomeSwitchHome</title>
+    <nav class="navbar navbar-light bg-light">
+        <%= link_to residences_path, class: 'navbar-brand' do %>
+        <%= image_tag "HSH-Logo.svg", width: 60, height: 60, title: "Logo", class: "logo" %>
+          HomeSwitchHome
+        <% end %>
+
+    </nav>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 

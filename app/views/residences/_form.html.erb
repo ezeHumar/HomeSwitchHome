@@ -1,7 +1,16 @@
 <%= simple_form_for @residence do |residence| %>
-  <%= residence.input :name, label: 'Nombre' %>
-  <%= residence.input :location, label: 'Ubicacion' %>
+  <%= residence.input :name, label: 'Nombre', required: true %>
+  <%= residence.input :location, label: 'Ubicacion', required: true %>
   <%= residence.input :capacity, label: 'Capacidad' %>
   <%= residence.input :photos ,label: 'URL'%>
-  <%= residence.button :submit %>
+  <div>
+    <div class="row justify-content-start">
+      <div class="col-4">
+        <%= residence.submit 'Guardar Residencia', class:'btn btn-info' %>
+      </div>
+      <div class="col-8">
+        <%= link_to 'Atras', residences_path, class: 'btn btn-light' %>
+      </div>
+    </div>
+  </div>
 <% end %>
