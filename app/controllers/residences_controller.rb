@@ -9,7 +9,7 @@ class ResidencesController < ApplicationController
     @residence = Residence.new
   end
   def create
-    @residence = Residence.new(residence_params))
+    @residence = Residence.new(residence_params)
     if @residence.save
       redirect_to residences_path, notice: "Residencia cargada correctamente"
     else
