@@ -4,5 +4,5 @@ class Residence < ApplicationRecord
   validates :capacity, presence: true
   validates :photos, presence: true
 
-  belongs_to :auction
+  #belongs_to :auction
 end
