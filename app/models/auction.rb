@@ -1,4 +1,3 @@
 class Auction < ApplicationRecord
-
-  #has_many :residences
+  belongs_to :residence
 end
