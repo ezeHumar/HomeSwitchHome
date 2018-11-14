@@ -1,0 +1,33 @@
+<% flash.each do |key, value| %>
+<div class="alert alert-<%=key%>"><%=value%></div>
+<%end%>
+<h1>Residencias</h1>
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Ubicacion</th>
+    <th>Capacidad</th>
+    <th>Fotos</th>
+    <th>Acciones</th>
+  </tr>
+  <%@residences.order(:name).each do |residence|%>
+  <tr>
+    <td><%= residence.name %></td>
+    <td><%= residence.location %></td>
+    <td><%= residence.capacity %></td>
+    <td><%= residence.photos %></td>
+    <td>
+      <%= link_to [:edit, :admin, residence], class:"btn btn-info" do %>
+        <i class="fa fa-pencil" aria-hidden="true"></i>
+      <%end%>
+      <%= link_to [:admin, residence], method: :delete, class:"btn btn-danger", data: { confirm: '¿Quiere eliminar la residencia realmente?' } do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <%end%>
+    </td>
+  </tr>
+ <%end%>
+</table>
+
+<div class="container">
+  <%= link_to 'Nueva Residencia', new_admin_residence_path, class: 'btn btn-info' %>
+</div>
