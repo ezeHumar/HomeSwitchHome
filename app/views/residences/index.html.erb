@@ -1,6 +1,8 @@
 <h1>Residencias</h1>
 
-
+<div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
 <table class="table">
   <tr>
     <th>Nombre</th>
@@ -9,7 +11,7 @@
     <th>Fotos</th>
     <th>Acciones</th>
   </tr>
-  <%@residences.each do |residence|%>
+  <%@residences.order(:name).each do |residence|%>
   <tr>
     <td><%= residence.name %></td>
     <td><%= residence.location %></td>
