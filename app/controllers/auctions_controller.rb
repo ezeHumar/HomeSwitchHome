@@ -33,4 +33,4 @@ class AuctionsController < ApplicationController
   def auction_params
     params.require(:auction).permit(:residence_id, :date)
   end
-  end
+end

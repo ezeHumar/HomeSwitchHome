@@ -11,7 +11,8 @@ class ResidencesController < ApplicationController
   def create
     @residence = Residence.new(residence_params)
     if @residence.save
-      redirect_to residences_path, notice: "Residencia cargada correctamente"
+      flash[:info] = "Residencia cargada correctamente"
+      redirect_to residences_path
     else
       render :new
     end
@@ -21,9 +22,11 @@ class ResidencesController < ApplicationController
     residence = Residence.find(params[:id])
 
     if residence.destroy
-      redirect_to residence_path, notice: "La residencia '#{residence.name}' ha sido eliminada exitosamente"
+      flash[:info] = "La residencia '#{residence.name}' ha sido eliminada exitosamente"
+      redirect_to residence_path
     else
-      redirect_to residences_path, notice: "No se ha podido eliminar la residencia '#{residence.name}'"
+      flash[:danger] = "No se ha podido eliminar la residencia '#{residence.name}'"
+      redirect_to residences_path
     end
   end
 
@@ -37,7 +40,8 @@ class ResidencesController < ApplicationController
     @residence = Residence.find(params[:id])
 
     if @residence.update(residence_params)
-      redirect_to residence_path, notice: 'La residencia se ha editado con éxito'
+      flash[:info]='La residencia se ha editado con éxito'
+      redirect_to residence_path
     else
       render :edit
     end
