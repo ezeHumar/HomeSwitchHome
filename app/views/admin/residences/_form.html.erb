@@ -4,13 +4,7 @@
   <%= residence.input :capacity, label: 'Capacidad' %>
   <%= residence.input :photos ,label: 'URL'%>
   <div>
-    <div class="row justify-content-start">
-      <div class="col-4">
         <%= residence.submit 'Guardar Residencia', class:'btn btn-info' %>
-      </div>
-      <div class="col-8">
-        <%= link_to 'Atras', admin_residences_path, class: 'btn btn-light' %>
-      </div>
-    </div>
+        <%= link_to 'Atras', admin_residences_path, class: 'btn btn-outline-info' %>
   </div>
 <% end %>
