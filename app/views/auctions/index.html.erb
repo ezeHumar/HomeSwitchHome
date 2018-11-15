@@ -6,13 +6,15 @@
     <th>Fecha</th>
     <th>Precio actual</th>
     <th>Mejor postor</th>
+    <th>Acciones</th>
   </tr>
   <%@auctions.each do |auction|%>
   <tr>
-    <td><%= auction.residence_id %></td>
+    <td><%= auction.residence.name %></td>
     <td><%= auction.startDate %></td>
     <td><%= auction.amount %></td>
-    <td><%= auction.email %></td>
+    <td><%= auction.email %></td>n
+    <td><%= link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
   </tr>
  <%end%>
 </table>

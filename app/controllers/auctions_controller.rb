@@ -29,6 +29,22 @@ class AuctionsController < ApplicationController
     end
   end
 
+  def edit
+    # params = { id: 7}
+    @auction = Auction.find(params[:id])
+  end
+
+  def update
+    @auction = Auction.find(params[:id])
+
+    if @auction.update(params.require(:auction).permit(:email, :amount))
+      flash[:info]='¡La subasta se ha realizado con éxito!'
+      redirect_to auction_path
+    else
+      render :edit
+    end
+  end
+
   private
   def auction_params
     params.require(:auction).permit(:residence_id, :date)

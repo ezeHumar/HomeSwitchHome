@@ -6,7 +6,6 @@
     <th>Fecha</th>
     <th>Precio actual</th>
     <th>Mejor postor</th>
-    <th>Acciones</th>
   </tr>
   <%@auctions.each do |auction|%>
   <tr>
@@ -14,14 +13,6 @@
     <td><%= auction.startDate %></td>
     <td><%= auction.amount %></td>
     <td><%= auction.email %></td>
-    <td>
-      <%= link_to edit_admin_auction_path(auction), class:"btn btn-info" do %>
-        <i class="fa fa-pencil" aria-hidden="true"></i>
-      <%end%>
-      <%= link_to auction, method: :delete, class:"btn btn-danger", data: { confirm: '¿Quiere eliminar la subasta realmente?' } do %>
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      <%end%>
-    </td>
   </tr>
  <%end%>
 </table>
