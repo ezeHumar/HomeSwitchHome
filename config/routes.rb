@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'residences#index'
     resources :residences
+    resources :auctions
   end
 
   root 'welcome#index'

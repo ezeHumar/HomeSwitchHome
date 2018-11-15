@@ -1,0 +1,17 @@
+<br>
+<h3> Nueva subasta </h3>
+
+<%= simple_form_for [:admin, @auction] do |auction| %>
+  <%= auction.input :residence_id, label: 'Id. de la residencia', required: true, collection: Residence.all.map { |r| [r.name, r.id] }%>
+  <%= auction.input :date, label: 'Fecha', required: true %>
+  <div>
+    <div class="row justify-content-start">
+      <div class="col-4">
+        <%= auction.submit 'Guardar subasta', class:'btn btn-info' %>
+      </div>
+      <div class="col-8">
+        <%= link_to 'Atras', auctions_path, class: 'btn btn-light' %>
+      </div>
+    </div>
+  </div>
+<% end %>
