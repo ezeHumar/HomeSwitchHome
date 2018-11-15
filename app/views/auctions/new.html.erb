@@ -3,7 +3,7 @@
 
 <%= simple_form_for @auction do |auction| %>
   <%= auction.input :residence_id, :collection => %w[@auction.all] %>
-  <%= auction.input :date, label: 'Fecha', required: true %>
+  <%= auction.input :startDate, label: 'Fecha', required: true %>
   <div>
     <div class="row justify-content-start">
       <div class="col-4">
