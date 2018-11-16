@@ -10,11 +10,13 @@
     <th>Fotos</th>
   </tr>
   <%@residences.order(:name).each do |residence|%>
-  <tr>
-    <td><%= residence.name %></td>
-    <td><%= residence.location %></td>
-    <td><%= residence.capacity %></td>
-    <td><%= residence.photos %></td>
-  </tr>
+  <% if !residence.deleted %>
+    <tr>
+      <td><%= residence.name %></td>
+      <td><%= residence.location %></td>
+      <td><%= residence.capacity %></td>
+      <td><%= residence.photos %></td>
+    </tr>
+  <% end %>
  <%end%>
 </table>

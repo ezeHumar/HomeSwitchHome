@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_121812) do
     t.integer "capacity"
     t.string "location"
     t.string "photos"
+    t.boolean "deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

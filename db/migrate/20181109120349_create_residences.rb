@@ -5,6 +5,7 @@ class CreateResidences < ActiveRecord::Migration[5.2]
       t.integer :capacity
       t.string :location
       t.string :photos
+      t.boolean :deleted
 
       t.timestamps
     end
