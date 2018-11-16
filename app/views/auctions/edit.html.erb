@@ -6,6 +6,6 @@
   <%= auction.input :amount, label: 'Monto', placeholder: @auction.amount, required: true %>
   <div>
         <%= auction.submit '¡Subastar!', class:'btn btn-success' %>
-        <%= link_to 'Atras', edit_auction_path, class: 'btn btn-outline-info' %>
+        <%= link_to 'Atras', auction_path, class: 'btn btn-outline-info' %>
   </div>
 <% end %>
