@@ -4,6 +4,9 @@ class Admin::ResidencesController < ApplicationController
   end
   def index
     @residences = Residence.all
+    if @residences.blank?
+      flash[:info] = "No hay residencias cargadas"
+    end
   end
   def new
     @residence = Residence.new
