@@ -2,9 +2,21 @@ class Admin::ResidencesController < ApplicationController
   def show
     redirect_to admin_residences_path
   end
+
   def index
     @residences = Residence.all
+    temp=false
+    @residences.each do |residence|
+      if !residence.deleted
+        temp=true
+        return
+      end
+    end
+    if !temp
+      flash[:info] = "No hay residencias cargadas"
+    end
   end
+
   def new
     @residence = Residence.new
   end
