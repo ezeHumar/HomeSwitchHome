@@ -3,14 +3,14 @@
   <head>
     <title>HomeSwitchHome</title>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <%= link_to residences_path, class: 'navbar-brand' do %>
+        <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag "HSH-Logo.svg", width: 60, height: 60, title: "Logo", class: "logo" %>
           HomeSwitchHome
         <% end %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link disabled">Inicio<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="residences">Residencias</a>
