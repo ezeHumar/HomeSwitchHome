@@ -13,7 +13,7 @@ class Admin::ResidencesController < ApplicationController
       end
     end
     if !temp
-      flash[:info] = "No hay residencias cargadas"
+      flash[:warning] = "No hay residencias cargadas"
     end
   end
 
