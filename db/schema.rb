@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_11_09_121812) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "auctions", force: :cascade do |t|
     t.date "startDate"
     t.integer "residence_id"
