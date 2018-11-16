@@ -1,4 +1,7 @@
 <br>
+<% flash.each do |key, value| %>
+<div class="alert alert-<%=key%>"><%=value%></div>
+<%end%>
 <h3>Subastas</h3>
 <table class="table">
   <tr>

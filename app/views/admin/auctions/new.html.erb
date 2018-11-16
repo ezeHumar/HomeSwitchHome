@@ -5,5 +5,5 @@
   <%= auction.input :residence_id, label: 'Id. de la residencia', required: true, collection: Residence.all.map { |r| [r.name, r.id] }%>
   <%= auction.input :startDate, label: 'Fecha', required: true %>
   <%= auction.submit 'Guardar subasta', class:'btn btn-info' %>
-  <%= link_to 'Atras', auctions_path, class: 'btn btn-outline-info' %>
+  <%= link_to 'Atras',  admin_auctions_path, class: 'btn btn-outline-info' %>
 <% end %>
