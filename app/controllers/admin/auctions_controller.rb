@@ -12,7 +12,10 @@ class Admin::AuctionsController < ApplicationController
   end
 
   def create
+
     @auction = Auction.new(auction_params)
+    @auction.amount = 0
+
     if @auction.save
       redirect_to admin_auctions_path, notice: "Subasta cargada correctamente"
     else
