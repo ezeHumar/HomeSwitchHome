@@ -1,5 +1,4 @@
 <h3> Nueva subasta </h3>
-
 <%= simple_form_for @auction do |auction| %>
   <%= auction.input :residence_id, :collection => %w[@auction.all] %>
   <%= auction.input :startDate, label: 'Fecha', required: true %>

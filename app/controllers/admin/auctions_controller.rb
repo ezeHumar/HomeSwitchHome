@@ -17,7 +17,8 @@ class Admin::AuctionsController < ApplicationController
     @auction.amount = 0
 
     if @auction.save
-      redirect_to admin_auctions_path, notice: "Subasta cargada correctamente"
+      flash[:info]="Subasta cargada correctamente"
+      redirect_to admin_auctions_path
     else
       render :new
     end
@@ -26,9 +27,11 @@ class Admin::AuctionsController < ApplicationController
     auction = Auction.find(params[:id])
 
     if auction.destroy
-      redirect_to admin_auctions_path, notice: "La subasta ha sido eliminada exitosamente"
+      flash[:info]="La subasta ha sido eliminada exitosamente"
+      redirect_to admin_auctions_path
     else
-      redirect_to admin_auctions_path, notice: "No se ha podido eliminar la subasta"
+      flash[:info]="No se ha podido eliminar la subasta"
+      redirect_to admin_auctions_path
     end
   end
 

@@ -1,18 +1,17 @@
-<br>
 <% flash.each do |key, value| %>
 <div class="alert alert-<%=key%>"><%=value%></div>
 <%end%>
 <h3>Subastas</h3>
 <table class="table">
   <tr>
-    <th>Id. De la residencia</th>
+    <th>Residencia</th>
     <th>Fecha</th>
     <th>Precio actual</th>
     <th>Mejor postor</th>
   </tr>
   <%@auctions.each do |auction|%>
   <tr>
-    <td><%= auction.residence_id %></td>
+    <td><%= auction.residence.name %></td>
     <td><%= auction.startDate %></td>
     <td><%= auction.amount %></td>
     <td><%= auction.email %></td>

@@ -14,19 +14,13 @@ class AuctionsController < ApplicationController
   def create
     @auction = Auction.new(auction_params)
     if @auction.save
-      redirect_to auctions_path, notice: "Subasta cargada correctamente"
+      flash[:info]='¡Subasta cargada correctamente!'
+      redirect_to auctions_path
     else
       render :new
     end
   end
   def destroy
-    auction = Auction.find(params[:id])
-
-    if auction.destroy
-      redirect_to auctions_path, notice: "La subasta ha sido eliminada exitosamente"
-    else
-      redirect_to auctions_path, notice: "No se ha podido eliminar la subasta"
-    end
   end
 
   def edit
