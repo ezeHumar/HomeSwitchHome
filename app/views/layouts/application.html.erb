@@ -2,6 +2,15 @@
 <html>
   <head>
     <title>HomeSwitchHome</title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <%= link_to root_path, class: 'navbar-brand' do %>
         <%= image_tag "HSH-Logo.svg", width: 60, height: 60, title: "Logo", class: "logo" %>
@@ -23,18 +32,11 @@
           <form class="form-inline my-2 my-lg-0">
             <%= link_to 'Usuario', residences_path, class: 'btn btn-outline-info mr-sm-2' %>
             <%= link_to 'Admin', admin_residences_path, class: 'btn btn-outline-info my-2 my-sm-0' %>
+            <%= link_to 'Salir', destroy_user_session_path, method: :delete, class: 'btn btn-outline-info' %>
           </form>
     </div>
 
     </nav>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
