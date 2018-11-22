@@ -30,6 +30,7 @@ es:
         credit_card: Número de tarjeta de crédito
         expiration_credit_card: Vencimiento de la tarjeta de crédito
         cvv: CVV
+        birth_date: Fecha de nacimiento
     models:
       user:
         one: Usuario

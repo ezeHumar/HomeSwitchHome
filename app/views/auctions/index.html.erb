@@ -20,3 +20,9 @@
 </tr>
 <%end%>
 </table>
+
+<% if current_user.admin? %>
+  <div>
+    <%= link_to 'Agregar subasta', new_admin_auction_path, class: 'btn btn-info'%>
+  </div>
+<% end %>

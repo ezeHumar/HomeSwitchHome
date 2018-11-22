@@ -4,6 +4,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :admin,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "Admin" }%>
     <%= f.input :name,
                 required: true,
                 autofocus: true ,
@@ -12,6 +16,10 @@
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "last name" }%>
+    <%= f.input :birth_date,
+                required: true,
+                autofocus: true ,
+                input_html: { autocomplete: "Birth date" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true ,
