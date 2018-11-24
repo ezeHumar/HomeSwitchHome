@@ -8,7 +8,9 @@
   <th>Fecha</th>
   <th>Precio actual</th>
   <th>Mejor postor</th>
-  <th>Accion</th>
+  <% if !current_user.admin? %>
+    <th>Accion</th>
+  <%end%>
 </tr>
 <%@auctions.each do |auction|%>
 <tr>
@@ -16,7 +18,9 @@
   <td><%=auction.startDate%></td>
   <td><%=auction.amount%></td>
   <td><%=auction.email%></td>
-  <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
+  <% if !current_user.admin? %>
+    <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
+  <% end %>
 </tr>
 <%end%>
 </table>

@@ -8,6 +8,9 @@
     <th>Ubicacion</th>
     <th>Capacidad</th>
     <th>Fotos</th>
+    <% if current_user.try(:admin?) %>
+      <th>Accion</th>
+    <% end %>
   </tr>
   <%@residences.order(:name).each do |residence|%>
   <% if !residence.deleted %>
@@ -22,7 +25,23 @@
           <% end %>
         <% end %>
       </td>
+      <% if current_user.try(:admin?) %>
+        <td>
+          <%= link_to [:edit, residence], class:"btn btn-info" do %>
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          <%end%>
+          <%= link_to [residence], method: :delete, class:"btn btn-danger", data: { confirm: '¿Quiere eliminar la residencia realmente?' } do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
  <%end%>
 </table>
+
+<% if current_user.try(:admin?) %>
+  <div>
+    <%= link_to 'Nueva Residencia', new_residence_path, class: 'btn btn-info' %>
+  </div>
+<% end %>

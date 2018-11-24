@@ -1,6 +1,8 @@
 <h3> Nueva subasta </h3>
 <%= simple_form_for @auction do |auction| %>
-  <%= auction.input :residence_id, :collection => %w[@auction.all] %>
-  <%= auction.input :startDate, label: 'Fecha', required: true %>
+  <%= auction.input :residence_id, label: 'Residencia', required: true, collection: Residence.all.reject { |s| s.deleted == true }.map { |r| [r.name, r.id] }%>
+  <%= auction.input :startDate, label: 'Fecha', required: true, input_html: { class: 'startDate-picker' }, as: :string %>
+  <%= auction.submit 'Guardar subasta', class:'btn btn-info' %>
+  <%= link_to 'Atras',  admin_auctions_path, class: 'btn btn-outline-info' %>
 
 <% end %>

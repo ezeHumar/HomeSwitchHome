@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>HomeSwitchHome</title>
-
+    <link rel="icon" type="image/svg" href="HSH-Logo.svg" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,15 +18,17 @@
         <% end %>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="residences">Residencias</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="auctions">Subastas</a>
-            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="residences">Residencias</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="auctions">Subastas</a>
+              </li>
+            <% end %>
           </ul>
 
           <form class="form-inline my-2 my-lg-0">
