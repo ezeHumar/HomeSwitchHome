@@ -17,16 +17,19 @@
                 autofocus: true ,
                 input_html: { autocomplete: "last name" }%>
     <%= f.input :birth_date,
+                as: :string,
+                class: 'form-control',
                 required: true,
                 autofocus: true ,
-                input_html: { autocomplete: "Birth date" }%>
+                label: 'Fecha de nacimiento:' ,
+                input_html: { data: {provide: 'datepicker'}, class: 'birthdate-picker' }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                hint: ("#{@minimum_password_length} caracteres como minimo" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: true,
@@ -39,7 +42,7 @@
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "CVV" }%>
-    <%= f.input :expiration_credit_card,
+    <%= f.date_field :expiration_credit_card,
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "Expiration credit card" }%>

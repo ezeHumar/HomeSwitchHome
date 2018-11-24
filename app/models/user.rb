@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+
+  has_many :reservations
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :password, length: { minimum: 6 }

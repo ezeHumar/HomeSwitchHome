@@ -13,8 +13,12 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
 //= require_tree .
 
-//= require jquery3
+
 //= require popper
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js

@@ -15,7 +15,13 @@
       <td><%= residence.name %></td>
       <td><%= residence.location %></td>
       <td><%= residence.capacity %></td>
-      <td><%= residence.photos %></td>
+      <td>
+        <% unless residence.photos.blank? %>
+          <%= link_to residence.photos, target: :_blank do %>
+          <%= image_tag residence.photos, width: 60, height: 60 %>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
  <%end%>

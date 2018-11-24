@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_234322) do
+ActiveRecord::Schema.define(version: 2018_11_23_122855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2018_11_22_234322) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "residence_id"
+    t.bigint "auction_id"
+    t.date "reservation_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_id"], name: "index_reservations_on_auction_id"
+    t.index ["residence_id"], name: "index_reservations_on_residence_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "residences", force: :cascade do |t|
