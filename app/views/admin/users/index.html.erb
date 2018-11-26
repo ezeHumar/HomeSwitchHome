@@ -1,0 +1,25 @@
+<h3>Usuarios</h3>
+<table class="table">
+  <tr>
+    <td>Apellido</td>
+    <td>Nombre</td>
+    <td>Edad</td>
+    <td>Categoria</td>
+    <td>Tarjeta</td>
+    <td>e-mail</td>
+  </tr>
+  <%@users.each do |user|%>
+  <tr>
+    <th><%= user.last_name %></th>
+    <th><%= user.name %></th>
+    <th><%= user.birth_date %></th>
+    <th><% if user.premium == false %>
+        <%="Basico"%>
+        <% else "Premium"%>
+        <%end%>
+    </th>
+    <th><%= user.credit_card%></th>
+    <th><%= user.email%></th>
+  </tr>
+<%end%>
+</table>
