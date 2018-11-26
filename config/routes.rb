@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     root 'residences#index'
     resources :residences
     resources :auctions
+    resources :users
   end
 
 

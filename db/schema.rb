@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_122855) do
     t.integer "credit_card"
     t.integer "cvv"
     t.date "expiration_credit_card"
-    t.boolean "premium"
+    t.boolean "premium", default: false
     t.date "birth_date"
     t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
