@@ -8,23 +8,25 @@
     <td>Tarjeta</td>
     <td>e-mail</td>
   </tr>
-  <%@users.each do |user|%>
-  <tr>
-    <th><%= user.last_name %></th>
-    <th><%= user.name %></th>
-    <th><% if user.premium == false %>
-        <%="Basico"%>
-        <% else "Premium"%>
+  <%@users.order(:last_name).each do |user|%>
+  <% if !user.admin? %>
+    <tr>
+      <th><%= user.last_name %></th>
+      <th><%= user.name %></th>
+      <th><% if user.premium == false %>
+          <%="Basico"%>
+          <% else "Premium"%>
+          <%end%>
+      </th>
+      <th><% if user.premium == false %>
+        <%= link_to 'Pasar a Premium', admin_users_path, class:"btn btn-info" %>
+        <%else%>
+        <%= link_to 'Pasar a Basico', admin_users_path, class:"btn btn-info" %>
         <%end%>
-    </th>
-    <th><% if user.premium == false %>
-      <%= link_to 'Pasar a Premium', admin_users_path, class:"btn btn-info" %>
-      <%else%>
-      <%= link_to 'Pasar a Basico', admin_users_path, class:"btn btn-info" %>
-      <%end%>
-    </th>
-    <th><%= user.credit_card%></th>
-    <th><%= user.email%></th>
-  </tr>
+      </th>
+      <th><%= user.credit_card%></th>
+      <th><%= user.email%></th>
+    </tr>
+  <%end%>
 <%end%>
 </table>
