@@ -3,8 +3,8 @@
   <tr>
     <td>Apellido</td>
     <td>Nombre</td>
-    <td>Edad</td>
     <td>Categoria</td>
+    <td>Accion</td>
     <td>Tarjeta</td>
     <td>e-mail</td>
   </tr>
@@ -12,11 +12,16 @@
   <tr>
     <th><%= user.last_name %></th>
     <th><%= user.name %></th>
-    <th><%= user.birth_date %></th>
     <th><% if user.premium == false %>
         <%="Basico"%>
         <% else "Premium"%>
         <%end%>
+    </th>
+    <th><% if user.premium == false %>
+      <%= link_to 'Pasar a Premium', admin_users_path, class:"btn btn-info" %>
+      <%else%>
+      <%= link_to 'Pasar a Basico', admin_users_path, class:"btn btn-info" %>
+      <%end%>
     </th>
     <th><%= user.credit_card%></th>
     <th><%= user.email%></th>
