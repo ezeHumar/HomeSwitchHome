@@ -5,7 +5,7 @@
 <table class="table">
 <tr>
   <th>Residencia</th>
-  <th>Fecha</th>
+  <th>Fecha de reserva</th>
   <th>Precio actual</th>
   <th>Mejor postor</th>
   <% if !current_user.admin? %>
@@ -17,7 +17,14 @@
   <td><%=auction.residence.name %></td>
   <td><%=auction.startDate%></td>
   <td><%=auction.amount%></td>
-  <td><%=auction.email%></td>
+  <td>
+    <% if auction.user.admin? %>
+      <%='Nadie ¡se vos!'%>
+      <% else %>
+        <%=auction.user.email%>
+    <% end %>
+    </td>
+
   <% if !current_user.admin? %>
     <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
   <% end %>
@@ -27,6 +34,6 @@
 
 <% if current_user.try(:admin?) %>
   <div>
-    <%= link_to 'Agregar subasta', new_admin_auction_path, class: 'btn btn-info'%>
+    <%= link_to 'Agregar subasta', new_auction_path, class: 'btn btn-info'%>
   </div>
 <% end %>
