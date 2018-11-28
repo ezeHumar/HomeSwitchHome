@@ -19,9 +19,15 @@
           <%end%>
       </th>
       <th><% if user.premium == false %>
-        <%= link_to 'Pasar a Premium', admin_users_path, class:"btn btn-info" %>
-        <%else%>
-        <%= link_to 'Pasar a Basico', admin_users_path, class:"btn btn-info" %>
+            <%= simple_form_for [:admin, user] do |u| %>
+              <%= u.input :premium, as: :hidden, input_html: { value: true } %>
+              <%= u.submit "Pasar a Premium" %>
+            <% end %>
+          <%else%>
+            <%= simple_form_for [:admin, user] do |u| %>
+              <%= u.input :premium, as: :hidden, input_html: { value: false } %>
+              <%= u.submit "Pasar a Basico" %>
+            <% end %>
         <%end%>
       </th>
       <th><%= user.credit_card%></th>
