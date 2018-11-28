@@ -1,6 +1,6 @@
 class ResidencesController < ApplicationController
   def show
-    redirect_to residences_path
+    @residence = Residence.find(params[:id])
   end
   def index
     @residences = Residence.all
@@ -20,7 +20,8 @@ class ResidencesController < ApplicationController
       render :new
     end
   end
-
+  def magia
+  end
   def destroy
     residence = Residence.find(params[:id])
     residence.deleted = true

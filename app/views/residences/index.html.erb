@@ -11,7 +11,7 @@
   <%@residences.order(:name).each do |residence|%>
   <% if !residence.deleted %>
     <tr>
-      <td><%= residence.name %></td>
+      <td><%= link_to residence.name, residence_path(residence.id) %></td>
       <td><%= residence.location %></td>
       <td><%= residence.capacity %></td>
       <td>
