@@ -1,1 +1,11 @@
 <h1> <%= @residence.name %> </h1>
+<table class="table">
+  <tr>
+    <th>Fecha:</th>
+  </tr>
+  <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).each do |r| %>
+    <tr>
+        <td><%= link_to r.reservation_date, reservation_path(r.id) %></td>
+    </tr>
+  <% end %>
+</table>

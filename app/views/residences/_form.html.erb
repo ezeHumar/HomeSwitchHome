@@ -1,6 +1,9 @@
 <%= simple_form_for @residence do |residence| %>
   <%= residence.input :name, required: true %>
-  <%= residence.input :location, required: true %>
+  <%= residence.input :country, priority_countries: ["Argentina"], required: true %>
+  <%= residence.input :city, required: true %>
+  <%= residence.input :zip, required: true %>
+  <%= residence.input :address, required: true %>
   <%= residence.input :capacity %>
   <%= residence.input :photos %>
   <div>

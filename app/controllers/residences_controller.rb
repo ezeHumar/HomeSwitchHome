@@ -20,8 +20,11 @@ class ResidencesController < ApplicationController
       render :new
     end
   end
-  def magia
+
+  def week
+    @residence = Residence.find(params[:id])
   end
+
   def destroy
     residence = Residence.find(params[:id])
     residence.deleted = true
@@ -56,6 +59,6 @@ class ResidencesController < ApplicationController
   end
   private
   def residence_params
-    params.require(:residence).permit(:name, :location, :capacity, :photos)
+    params.require(:residence).permit(:name, :country, :zip, :city, :address, :capacity, :photos)
   end
 end
