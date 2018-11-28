@@ -9,6 +9,10 @@ es:
       residence:
         name: 'Nombre'
         location: 'Ubicación'
+        zip: 'Código postal'
+        city: 'Ciudad'
+        address: 'Direccion'
+        country: 'País'
         capacity: 'Capacidad'
         photos: 'Fotos'
     errors:

@@ -3,7 +3,10 @@
 <table class="table">
   <tr>
     <th>Nombre</th>
-    <th>Ubicacion</th>
+    <th>País</th>
+    <th>Ciudad</th>
+    <th>Código postal</th>
+    <th>Direccón</th>
     <th>Capacidad</th>
     <th>Foto</th>
     <th>Accion</th>
@@ -12,7 +15,10 @@
   <% if !residence.deleted %>
     <tr>
       <td><%= link_to residence.name, residence_path(residence.id) %></td>
-      <td><%= residence.location %></td>
+      <td><%= residence.country %></td>
+      <td><%= residence.city %></td>
+      <td><%= residence.zip %></td>
+      <td><%= residence.address %></td>
       <td><%= residence.capacity %></td>
       <td>
         <% unless residence.photos.blank? %>
