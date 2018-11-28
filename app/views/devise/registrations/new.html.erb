@@ -43,9 +43,12 @@
                 autofocus: true ,
                 input_html: { autocomplete: "CVV" }%>
     <%= f.date_field :expiration_credit_card,
+                as: :string,
+                class: 'form-control',
                 required: true,
                 autofocus: true ,
-                input_html: { autocomplete: "Expiration credit card" }%>
+                label: 'Vencimiento de tarjeta de crédito:' ,
+                input_html: { data: {provide: 'datepicker'} }%>
 
 
   </div>
