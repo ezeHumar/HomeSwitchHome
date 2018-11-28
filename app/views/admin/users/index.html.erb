@@ -13,20 +13,23 @@
     <tr>
       <th><%= user.last_name %></th>
       <th><%= user.name %></th>
-      <th><% if user.premium == false %>
-          <%="Basico"%>
-          <% else "Premium"%>
-          <%end%>
+      <th>
+        <% if user.premium == true %>
+          <%= 'Premium' %>
+        <% end %>
+        <% if user.premium == false %>
+          <%= 'Basico' %>
+        <% end %>
       </th>
       <th><% if user.premium == false %>
             <%= simple_form_for [:admin, user] do |u| %>
               <%= u.input :premium, as: :hidden, input_html: { value: true } %>
-              <%= u.submit "Pasar a Premium" %>
+              <%= u.submit "Pasar a Premium", class:'btn btn-info' %>
             <% end %>
           <%else%>
             <%= simple_form_for [:admin, user] do |u| %>
               <%= u.input :premium, as: :hidden, input_html: { value: false } %>
-              <%= u.submit "Pasar a Basico" %>
+              <%= u.submit "Pasar a Basico" , class:'btn btn-info'%>
             <% end %>
         <%end%>
       </th>
