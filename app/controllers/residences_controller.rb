@@ -50,7 +50,9 @@ class ResidencesController < ApplicationController
       render :edit
     end
   end
-
+  def profile
+    @residence = Residence.find(params[:id])
+  end
   private
   def residence_params
     params.require(:residence).permit(:name, :location, :capacity, :photos)

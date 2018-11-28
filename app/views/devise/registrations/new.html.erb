@@ -22,7 +22,7 @@
                 required: true,
                 autofocus: true ,
                 label: 'Fecha de nacimiento:' ,
-                input_html: { data: {provide: 'datepicker'}, class: 'birthdate-picker' }%>
+                input_html: { data: {provide: 'datepicker', 'date-format' =>"yyyy-mm-dd"}, class: 'birthdate-picker' }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true ,
@@ -42,13 +42,13 @@
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "CVV" }%>
-    <%= f.date_field :expiration_credit_card,
+    <%= f.input :expiration_credit_card,
                 as: :string,
                 class: 'form-control',
                 required: true,
                 autofocus: true ,
                 label: 'Vencimiento de tarjeta de crédito:' ,
-                input_html: { data: {provide: 'datepicker'} }%>
+                input_html: { data: {provide: 'datepicker', 'date-format' =>"yyyy-mm-dd"}, required: true }%>
 
 
   </div>

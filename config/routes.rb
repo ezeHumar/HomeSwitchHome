@@ -5,11 +5,18 @@ Rails.application.routes.draw do
     resources :residences
     resources :auctions
     resources :users
+    resources :edit
+    resources :update
   end
 
 
     root 'welcome#index'
   resources :auctions # index create edit update destroy
-  resources :residences#, only: [:index] # index create edit update destroy
+  resources :residences do
+    get :profile, on: :member
+    get :ranking, on: :collection
+  end#, only: [:index] # index create edit update destroy
+  resources :users
+#  resources :update
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -6,6 +6,14 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
   def edit
-    
+    @user = User.find(params[:id])
+  end
+  def update
+    @user = User.find(params[:id])
+    if @user.update!(params.require(:user).permit(:premium))
+      redirect_to admin_users_path(@user)
+    else
+      render :edit
+    end
   end
 end
