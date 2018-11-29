@@ -9,7 +9,9 @@
     <th>Direccón</th>
     <th>Capacidad</th>
     <th>Foto</th>
-    <th>Accion</th>
+    <% if current_user.try(:admin?) %>
+      <th>Accion</th>
+    <% end %>
   </tr>
   <%@residences.order(:name).each do |residence|%>
   <% if !residence.deleted %>
@@ -35,9 +37,7 @@
           <%= link_to [residence], method: :delete, class:"btn btn-danger", data: { confirm: '¿Quiere eliminar la residencia realmente?' } do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
-            <% else %>
-              <%= link_to 'Ver subastas', residences_path, class:"btn btn-info" %>
-            <% end %>
+      <% end %>
       </td>
     </tr>
   <% end %>
