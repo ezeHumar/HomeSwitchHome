@@ -1,11 +1,33 @@
 <h1> <%= @residence.name %> </h1>
 <table class="table">
   <tr>
-    <th>Fecha:</th>
+    <th>Fechas de reserva</th>
+    <th>Inicio de subasta</th>
+    <th>Accion</th>
   </tr>
   <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).each do |r| %>
     <tr>
-        <td><%= link_to r.reservation_date, reservation_path(r.id) %></td>
+        <td><%= r.reservation_date %></td>
+        <td>
+          <% if r.auction.startDate < Date.today %>
+            <%= r.auction.startDate %>
+            <%= '¡Activa!' %>
+            <% else %>
+              <%= r.auction.startDate %>
+            <% end %>
+        </td>
+        <td>
+          <% if current_user.premium? %>
+            <button type="button" class="btn btn-success">Reservar</button>
+            <% else %>
+
+              <% if r.auction.startDate < Date.today %>
+                <%= link_to 'Subastar', [:edit, r.auction], class: 'btn btn-outline-success' %>
+                <% else %>
+                  <button type="button" class="btn btn-success" disabled>Subastar</button>
+                <% end %>
+            <% end %>
+        </td>
     </tr>
   <% end %>
 </table>
