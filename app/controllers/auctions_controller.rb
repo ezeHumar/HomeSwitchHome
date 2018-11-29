@@ -12,8 +12,14 @@ class AuctionsController < ApplicationController
   end
 
   def create
+    begin
 
     auction_startDate = Date.strptime(auction_params[:startDate], '%d/%m/%Y') - 6.months
+    rescue
+      auction_startDate = nil
+    end
+
+    @auctions = Auction.all
     @auction = Auction.new(auction_params.merge(startDate: auction_startDate, user: current_user))
     @auction.amount = 0
 
