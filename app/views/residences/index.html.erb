@@ -16,7 +16,13 @@
   <%@residences.order(:name).each do |residence|%>
   <% if !residence.deleted %>
     <tr>
-      <td><%= link_to residence.name, residence_path(residence.id) %></td>
+      <td>
+      <%if current_user.admin? %>
+          <%= link_to residence.name, residence_path(residence.id) %>
+      <%else%>
+          <%= residence.name %>
+      <%end%>
+      </td>
       <td><%= residence.country %></td>
       <td><%= residence.city %></td>
       <td><%= residence.zip %></td>
