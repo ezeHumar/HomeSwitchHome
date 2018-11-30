@@ -15,6 +15,7 @@ es:
         country: 'País'
         capacity: 'Capacidad'
         photos: 'Fotos'
+        description: 'Descripción'
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
