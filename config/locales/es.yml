@@ -5,6 +5,9 @@ es:
       residence:
         one: 'Residencia'
         other: 'Residencias'
+      auction:
+        one: 'Subasta'
+        other: 'Subastas'
     attributes:
       residence:
         name: 'Nombre'
@@ -16,6 +19,9 @@ es:
         capacity: 'Capacidad'
         photos: 'Fotos'
         description: 'Descripción'
+      auction:
+        startDate: 'Fecha de reserva'
+        residence_id: 'Residencia'
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
