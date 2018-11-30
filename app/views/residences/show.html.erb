@@ -21,7 +21,7 @@
     <th>Inicio de subasta</th>
     <th>Accion</th>
   </tr>
-  <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).each do |r| %>
+  <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).order(:reservation_date).each do |r| %>
     <tr>
         <td><%= r.reservation_date %></td>
         <td>
