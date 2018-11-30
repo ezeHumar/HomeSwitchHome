@@ -17,7 +17,7 @@
   <% if !residence.deleted %>
     <tr>
       <td>
-      <%if current_user.admin? %>
+      <%if !current_user.admin? %>
           <%= link_to residence.name, residence_path(residence.id) %>
       <%else%>
           <%= residence.name %>
