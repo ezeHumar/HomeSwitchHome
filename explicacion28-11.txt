@@ -1,0 +1,32 @@
+Las golondrinas
+Las gaviotas
+
+
+-------
+
+Las gaviotas
+Esmeralda 21312
+Mar del Plata
+
+Semanas disponibles
+- Semana del 28-05-19
+- Semana del 28-05-19
+- Semana del 28-05-19
+- Semana del 28-05-19
+- Semana del 28-05-19
+- Semana del 28-05-19
+
+--------------
+Las gaviotas
+Semana 123123
+
+Adjudicar residencia / Entrar en subasta
+
+@residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10)
+
+get week, on: :member
+residence_week_path(residence, re_id: a_date)
+
+def week
+   params[:id]
+    params[:date]

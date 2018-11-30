@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_usuario: 1
+  id_residence: 1
+  reservation_date: 2018-11-23
+
+two:
+  id_usuario: 1
+  id_residence: 1
+  reservation_date: 2018-11-23
