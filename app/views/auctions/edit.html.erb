@@ -1,8 +1,7 @@
 <h3>Participar en la subasta</h3>
-
 <%= simple_form_for [@auction] do |auction| %>
   <!-- <%= auction.input :email, as: :email, label: 'E-mail',placeholder: 'user@domain.com', required: true %> -->
-  <%= auction.input :amount, label: "Monto (Mayor a: #{@auction.amount}"), placeholder: @auction.amount, required: true %>
+  <%= auction.input :amount, label: "Monto (Mayor a: #{@auction.amount})", placeholder: @auction.amount, required: true %>
   <div>
         <%= auction.submit '¡Subastar!', class:'btn btn-success', validate: false %>
         <%= link_to 'Atras', auction_path, class: 'btn btn-outline-info' %>
