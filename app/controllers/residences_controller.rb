@@ -59,6 +59,6 @@ class ResidencesController < ApplicationController
   end
   private
   def residence_params
-    params.require(:residence).permit(:name, :country, :zip, :city, :address, :capacity, :photos)
+    params.require(:residence).permit(:name, :country, :zip, :city, :address, :capacity, :photos, :description)
   end
 end
