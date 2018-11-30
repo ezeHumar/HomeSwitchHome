@@ -7,7 +7,7 @@ class Auction < ApplicationRecord
   validates :amount, numericality: { greater_than: :amount_was }, if: :persisted?
   validates :residence_id, presence: true
   validates :startDate, presence: true
-  validate :date_mayor_que_hoy
+  validate :date_mayor_que_hoy, on: :create
   #validate :fecha_no_repetida
   validates_format_of :email, allow_nil: true,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 

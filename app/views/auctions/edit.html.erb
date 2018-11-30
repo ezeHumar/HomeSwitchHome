@@ -4,7 +4,7 @@
   <!-- <%= auction.input :email, as: :email, label: 'E-mail',placeholder: 'user@domain.com', required: true %> -->
   <%= auction.input :amount, label: 'Monto', placeholder: @auction.amount, required: true %>
   <div>
-        <%= auction.submit '¡Subastar!', class:'btn btn-success' %>
+        <%= auction.submit '¡Subastar!', class:'btn btn-success', validate: false %>
         <%= link_to 'Atras', auction_path, class: 'btn btn-outline-info' %>
   </div>
 <% end %>
