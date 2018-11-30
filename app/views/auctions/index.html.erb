@@ -1,33 +1,77 @@
-<h3>Subastas</h3>
-<table class="table">
-<tr>
-  <th>Residencia</th>
-  <th>Fecha de reserva</th>
-  <th>Precio actual</th>
-  <th>Mejor postor</th>
-  <% if !current_user.admin? %>
-    <th>Accion</th>
-  <%end%>
-</tr>
-<%@auctions.each do |auction|%>
-<tr>
-  <td><%=auction.residence.name %></td>
-  <td><%=auction.startDate%></td>
-  <td><%=auction.amount%></td>
-  <td>
-    <% if auction.user.admin? %>
-      <%='Nadie ¡Subastá ahora!'%>
+
+<% if !current_user.premium? %>
+  <h3>Subastas</h3>
+
+  <table class="table">
+  <tr>
+    <th>Residencia</th>
+    <th>Fecha de reserva</th>
+    <% if current_user.admin? %>
+      <th>Inicio de subasta</th>
+    <% end%>
+    <th>Precio actual</th>
+    <th>Mejor postor</th>
+    <% if !current_user.admin? %>
+      <th>Accion</th>
+    <%end%>
+  </tr>
+  <%@auctions.each do |auction|%>
+  <tr>
+    <td><%=auction.residence.name %></td>
+    <td><%=auction.startDate+6.months%></td>
+    <% if current_user.admin? %>
+      <td><%=auction.startDate%></td>
+    <% end%>
+    <td><%=auction.amount%></td>
+    <td>
+      <% if auction.user.admin? %>
+
+        <% if current_user.admin? %>
+          <%='Nadie aún'%>
+        <% else %>
+          <%='Nadie'%>
+        <% end %>
       <% else %>
         <%=auction.user.email%>
-    <% end %>
-    </td>
+      <% end %>
+      </td>
 
-  <% if !current_user.admin? %>
-    <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
-  <% end %>
-</tr>
-<%end%>
-</table>
+    <% if !current_user.admin? %>
+      <% if auction.startDate > Date.today %>
+        <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+      <% else %>
+        <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
+      <% end %>
+    <% end %>
+  </tr>
+  <%end%>
+  </table>
+<% end %>
+
+
+
+<% if current_user.premium? %>
+  <h3>Reservas</h3>
+  <table class="table">
+  <tr>
+    <th>Residencia</th>
+    <th>Fecha de reserva</th>
+    <% if !current_user.admin? %>
+      <th>Accion</th>
+    <%end%>
+  </tr>
+  <% @auctions.each do |auction|%>
+  <tr>
+    <td><%=auction.residence.name %></td>
+    <td><%=auction.startDate%></td>
+
+    <% if !current_user.admin? %>
+      <td><button type="button" class="btn btn-success">Reservar</button></td>
+    <% end %>
+  </tr>
+  <%end%>
+  </table>
+<% end %>
 
 <% if current_user.try(:admin?) %>
   <div>

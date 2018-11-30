@@ -26,7 +26,11 @@
                  <%= link_to 'Residencias', residences_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Subastas', auctions_path, class: 'nav-link' %>
+                <% if !current_user.premium %>
+                  <%= link_to 'Subastas', auctions_path, class: 'nav-link' %>
+                <% else %>
+                  <%= link_to 'Reservas', auctions_path, class: 'nav-link' %>
+                <% end %>
               </li>
             <% end %>
           </ul>
