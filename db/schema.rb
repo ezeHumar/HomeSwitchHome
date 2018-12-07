@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_11_21_125410) do
-=======
 ActiveRecord::Schema.define(version: 2018_12_05_183512) do
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +29,11 @@ ActiveRecord::Schema.define(version: 2018_12_05_183512) do
     t.float "amount"
     t.integer "user_id"
     t.integer "auction_id"
+
+  create_table "hotsales", force: :cascade do |t|
+    t.integer "reservation_id"
+    t.string "name"
+    t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

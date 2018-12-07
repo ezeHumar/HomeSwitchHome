@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
   resources :offers
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
+  resources :hotsales
   devise_for :users
   namespace :admin do
     root 'residences#index'
@@ -12,7 +10,6 @@ Rails.application.routes.draw do
     resources :edit
     resources :update
   end
-
 
 
 

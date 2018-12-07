@@ -33,6 +33,11 @@
                 <% end %>
               </li>
             <% end %>
+            <% if current_user.try(:admin?) %>
+            <li class="nav-item">
+              <%= link_to 'Hot-Sale', hotsales_path, class: 'nav-link' %>
+            </li>
+            <% end %>
           </ul>
 
           <form class="form-inline my-2 my-lg-0">
@@ -47,10 +52,7 @@
               <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0' %>
             <% end %>
           </form>
-
-
-    </div>
-
+        </div>
     </nav>
 
 <<<<<<< HEAD

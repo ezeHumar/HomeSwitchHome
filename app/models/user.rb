@@ -1,11 +1,10 @@
 class User < ApplicationRecord
-<<<<<<< HEAD
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-=======
 
+  has_many :hotsales
   has_many :reservations
   has_many :auctions
   has_many :offers
@@ -36,5 +35,4 @@ class User < ApplicationRecord
          errors.add(:expiration_credit_card, "La fecha de vencimiento de la tarjeta de crédito debe ser una fecha futura")
        end
      end
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
 end

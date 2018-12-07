@@ -1,0 +1,45 @@
+class HotsalesController < ApplicationController
+  def show
+    redirect_to hotsales_path
+  end
+
+  def index
+    @hotsales = Hotsale.all
+    if @hotsales.length == 0
+      flash[:warning]="Por el momento no hay ofertas"
+    end
+  end
+
+  def new
+    @hotsale = Hotsale.new
+  end
+
+  def create
+    @hotsales = Hotsale.all
+    @hotsale = Hotsale.new(hotsale_params)
+    if @hotsale.save
+
+      flash[:info]="Hot-sale cargado correctamente"
+      redirect_to hotsales_path
+    else
+      render :new
+    end
+  end
+
+  def destroy
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+private
+def hotsale_params
+  params.require(:hotsale).permit(:reservation_id, :name, :amount)
+end
+
+end

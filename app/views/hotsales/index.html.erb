@@ -1,0 +1,19 @@
+<h3>¡Promociones!</h3>
+<table class="table">
+  <tr>
+    <th>Id de Reserva</th>
+    <th>Nombre</th>
+    <th>Precio Promocional</th>
+  </tr>
+  <%@hotsales.each do |hotsale|%>
+  <tr>
+    <td><%=hotsale.reservation_id%></td>
+    <td><%=hotsale.name%></td>
+    <td><%=hotsale.amount%></td>
+  </tr>
+  <% end %>
+
+</table>
+<div>
+  <%= link_to 'Agregar Hot-Sale', new_hotsale_path, class: 'btn btn-info'%>
+</div>
