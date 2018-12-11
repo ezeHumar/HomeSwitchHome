@@ -1,4 +1,5 @@
 <h3>¡Promociones!</h3>
+<% if current_user.admin? %>
 <table class="table">
   <tr>
     <th>Id de Reserva</th>
@@ -14,6 +15,25 @@
   <% end %>
 
 </table>
+
 <div>
   <%= link_to 'Agregar Hot-Sale', new_hotsale_path, class: 'btn btn-info'%>
 </div>
+<%end%>
+<% if !current_user.admin? %>
+<div class="card-deck">
+  <% @hotsales.each do |hotsale| %>
+  <div class="card">
+      <%= image_tag hotsale.reservation.residence.photos, style: 'height:40%;width:100%;' %>
+      <div class="card-body">
+        <h3 class="card-title">Precio $<%=hotsale.amount%></h3>
+        <p class="card-text"><%= hotsale.name %></p>
+        <p class="card-text">Fecha: <%= hotsale.reservation.reservation_date %></p>
+        <p class="card-text"><%= hotsale.reservation.residence.description %></p>
+        <%= link_to '¡Comprar ahora!', hotsales_path, class: 'btn btn-outline-success', data: { confirm: '¿Desea confirmar la compra?' } %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% end %>

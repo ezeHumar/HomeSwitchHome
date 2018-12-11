@@ -33,11 +33,9 @@
                 <% end %>
               </li>
             <% end %>
-            <% if current_user.try(:admin?) %>
             <li class="nav-item">
               <%= link_to 'Hot-Sale', hotsales_path, class: 'nav-link' %>
             </li>
-            <% end %>
           </ul>
 
           <form class="form-inline my-2 my-lg-0">
