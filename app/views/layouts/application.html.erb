@@ -32,6 +32,9 @@
                   <%= link_to 'Reservas', auctions_path, class: 'nav-link' %>
                 <% end %>
               </li>
+              <li class="nav-item">
+                <%= link_to 'Hot-sale', hotsales_path, class: 'nav-link' %>
+              </li>
             <% end %>
           </ul>
 
@@ -47,16 +50,12 @@
               <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0' %>
             <% end %>
           </form>
-
-
-    </div>
-
+        </div>
     </nav>
-
     <div class="container">
       <br>
       <% flash.each do |key, value| %>
-      <div class="alert alert-<%=key%>"><%=value%></div>
+        <div class="alert alert-<%=key == "alert" ? "danger" : "success"%>"><%=value%></div>
       <%end%>
       <br>
       <%= yield %>

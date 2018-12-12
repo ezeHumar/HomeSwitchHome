@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  resources :offers
+  resources :hotsales
   devise_for :users
   namespace :admin do
     root 'residences#index'
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
     resources :edit
     resources :update
   end
-
 
 
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     get :week, on: :member
   end#, only: [:index] # index create edit update destroy
   resources :users
-  resources :reservations    
+  resources :reservations
   resources :search, only: [:index]
 #  resources :update
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
