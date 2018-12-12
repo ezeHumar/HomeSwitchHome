@@ -1,8 +1,12 @@
 <h3>Participar en la subasta</h3>
 
 <%= simple_form_for @offer do |offer| %>
- <%= offer.input :amount, label: "Monto (Mayor a: #{Offer.last.amount})", placeholder: Offer.last.amount, required: true %>
- <% offer.input :auction_id, html: { value: @auction.id } %>
+  <% if offer.nil? %>
+    <%= offer.input :amount, label: "Monto (Mayor a: 0)", placeholder: '0', required: true %>
+  <% else %>
+    <%= offer.input :amount, label: "Monto (Mayor a: #{@auction.offers.last.amount})", placeholder: @auction.offers.last.amount, required: true %>
+  <% end %>
+  <% offer.input :auction_id, html: { value: @auction.id } %>
   <div>
         <%= offer.submit '¡Subastar!', class:'btn btn-success', validate: false %>
         <%= link_to 'Atras', auction_path, class: 'btn btn-outline-info' %>

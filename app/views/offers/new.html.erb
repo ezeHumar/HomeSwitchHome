@@ -1,0 +1,10 @@
+<h3> Ofertar </h3>
+
+  <%= simple_form_for [@auction , @offer] do |offer| %>
+    <%# offer.input :amount, label: "Monto (Mayor a: #{@auction.offers.last.amount})", placeholder: @auction.offers.last.amount, required: true %>
+    <%= offer.input :amount, required: true %>
+    <div>
+          <%= offer.submit '¡Subastar!', class:'btn btn-success', validate: false %>
+          <%= link_to 'Atras', auctions_path, class: 'btn btn-outline-info' %>
+    </div>
+  <% end %>

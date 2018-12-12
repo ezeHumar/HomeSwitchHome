@@ -1,0 +1,16 @@
+<h3> Reservas </h3>
+
+<table class="table">
+<tr>
+  <th>Reserva</th>
+  <th>Fecha de reserva</th>
+</tr>
+
+  <%@reservations.order(:reservation_date).each do |reservation|%>
+  <tr>
+    <td><%=reservation.residence.name%></td>
+    <td><%=reservation.reservation_date%></td>
+    </tr>
+  <% end %>
+
+</table>
