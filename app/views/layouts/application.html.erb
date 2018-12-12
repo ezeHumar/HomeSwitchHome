@@ -2,31 +2,7 @@
 <html>
   <head>
     <title>HomeSwitchHome</title>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-        <%= link_to root_path, class: 'navbar-brand' do %>
-        <%= image_tag "HSH-Logo.svg", width: 60, height: 60, title: "Logo", class: "logo" %>
-          HomeSwitchHome
-        <% end %>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="residences">Residencias</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="auctions">Subastas</a>
-            </li>
-          </ul>
-
-          <form class="form-inline my-2 my-lg-0">
-            <%= link_to 'Usuario', residences_path, class: 'btn btn-outline-info mr-sm-2' %>
-            <%= link_to 'Admin', admin_residences_path, class: 'btn btn-outline-info my-2 my-sm-0' %>
-          </form>
-    </div>
-
-    </nav>
+    <link rel="icon" type="image/svg" href="HSH-Logo.svg" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -35,10 +11,64 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <%= link_to root_path, class: 'navbar-brand' do %>
+        <%= image_tag "HSH-Logo.svg", width: 60, height: 60, title: "Logo", class: "logo" %>
+          HomeSwitchHome
+        <% end %>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                 <%= link_to 'Residencias', residences_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <% if !current_user.premium %>
+                  <%= link_to 'Subastas', auctions_path, class: 'nav-link' %>
+                <% else %>
+                  <%= link_to 'Reservas', auctions_path, class: 'nav-link' %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+          <form class="form-inline my-2 my-lg-0">
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <%= link_to 'Lista de usuarios', admin_users_path, class: 'btn btn-outline-info mr-sm-2' %>
+              <% end %>
+              <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'btn btn-outline-info my-2 my-sm-0' %>
+            <% end %>
+            <% if !user_signed_in? %>
+              <%= link_to 'Iniciar sesión', user_session_path, class: 'btn btn-outline-info mr-sm-2' %>
+              <%= link_to 'Registrarse', new_user_registration_path, class: 'btn btn-outline-info my-2 my-sm-0' %>
+            <% end %>
+          </form>
+
+
+    </div>
+
+    </nav>
+
+<<<<<<< HEAD
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
 
+=======
+>>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
     <div class="container">
+      <br>
+      <% flash.each do |key, value| %>
+      <div class="alert alert-<%=key%>"><%=value%></div>
+      <%end%>
       <br>
       <%= yield %>
       <br>

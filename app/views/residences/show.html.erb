@@ -1,0 +1,51 @@
+<h1> <%= @residence.name %> </h1>
+<div class="card">
+  <div class="card">
+    <%= image_tag @residence.photos %>
+  </div>
+
+  <div class="card-header">
+    Detalle
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Vení a cononcer <%=@residence.name%></h5>
+    <p class="card-text">Ubicado en <%=@residence.country%> en la ciudad de <%=@residence.city%></p>
+    <p class="card-text">Direccion: <%=@residence.address%></p>
+    <% if !@residence.description.empty? %>
+      <p class="card-text">Descripcion: <%=@residence.description%></p>
+    <% end %>
+
+</div>
+</div>
+<table class="table">
+  <tr>
+    <th>Fechas de reserva</th>
+    <th>Inicio de subasta</th>
+    <th>Accion</th>
+  </tr>
+  <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).order(:reservation_date).each do |r| %>
+    <tr>
+        <td><%= r.reservation_date %></td>
+        <td>
+          <% if r.auction.startDate < Date.today %>
+            <%= r.auction.startDate %>
+            <%= '¡Activa!' %>
+            <% else %>
+              <%= r.auction.startDate %>
+            <% end %>
+        </td>
+        <td>
+          <% if current_user.premium? %>
+            <button type="button" class="btn btn-success">Reservar</button>
+            <% else %>
+
+              <% if r.auction.startDate < Date.today %>
+                <%= link_to 'Subastar', [:edit, r.auction], class: 'btn btn-outline-success' %>
+                <% else %>
+                  <button type="button" class="btn btn-success" disabled>Subastar</button>
+                <% end %>
+            <% end %>
+        </td>
+    </tr>
+  <% end %>
+</table>

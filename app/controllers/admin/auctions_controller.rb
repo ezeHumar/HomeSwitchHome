@@ -13,10 +13,12 @@ class Admin::AuctionsController < ApplicationController
 
   def create
 
-    @auction = Auction.new(auction_params)
+    auction_startDate = Date.strptime(auction_params[:startDate], '%d/%m/%Y') - 6.months
+    @auction = Auction.new(auction_params.merge(startDate: auction_startDate))
     @auction.amount = 0
 
     if @auction.save
+      Reservation.create(residence_id: auction_params[:residence_id], reservation_date: auction_params[:startDate], auction_id: @auction.id)
       flash[:info]="Subasta cargada correctamente"
       redirect_to admin_auctions_path
     else

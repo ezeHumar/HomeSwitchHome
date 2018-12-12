@@ -64,3 +64,10 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'devise'
+<<<<<<< HEAD
+=======
+gem 'bootstrap-datepicker-rails'
+gem 'country_select'
+gem 'pg_search'
+gem 'countries'
+>>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe

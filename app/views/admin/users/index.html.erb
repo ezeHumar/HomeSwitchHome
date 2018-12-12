@@ -1,0 +1,41 @@
+<h3>Usuarios</h3>
+<table class="table">
+  <tr>
+    <th>Apellido</th>
+    <th>Nombre</th>
+    <th>Categoria</th>
+    <th>Accion</th>
+    <th>Tarjeta</th>
+    <th>e-mail</th>
+  </tr>
+  <%@users.order(:last_name).each do |user|%>
+  <% if !user.admin? %>
+    <tr>
+      <td><%= user.last_name %></td>
+      <td><%= user.name %></td>
+      <td>
+        <% if user.premium == true %>
+          <%= 'Premium' %>
+        <% end %>
+        <% if user.premium == false %>
+          <%= 'Basico' %>
+        <% end %>
+      </td>
+      <td><% if user.premium == false %>
+            <%= simple_form_for [:admin, user] do |u| %>
+              <%= u.input :premium, as: :hidden, input_html: { value: true } %>
+              <%= u.submit "Pasar a Premium", class:'btn btn-info', data: { confirm: '¿Esta seguro que desea cambiar la categoria del usuario a Premium?' } %>
+            <% end %>
+          <%else%>
+            <%= simple_form_for [:admin, user] do |u| %>
+              <%= u.input :premium, as: :hidden, input_html: { value: false } %>
+              <%= u.submit "Pasar a Basico" , class:'btn btn-info' , data: { confirm: '¿Esta seguro que desea cambiar la categoria del usuario a Basico?' }%>
+            <% end %>
+        <%end%>
+      </td>
+      <td><%= user.credit_card%></td>
+      <td><%= user.email%></td>
+    </tr>
+  <%end%>
+<%end%>
+</table>

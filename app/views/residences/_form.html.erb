@@ -1,0 +1,14 @@
+<%= simple_form_for @residence do |residence| %>
+  <%= residence.input :name, required: true %>
+  <%= residence.input :country, priority_countries: ["Argentina"], required: true %>
+  <%= residence.input :city, required: true %>
+  <%= residence.input :zip, required: true %>
+  <%= residence.input :address, required: true %>
+  <%= residence.input :capacity %>
+  <%= residence.input :description %>
+  <%= residence.input :photos %>
+  <div>
+        <%= residence.submit class:'btn btn-info' %>
+        <%= link_to 'Atras', residences_path, class: 'btn btn-outline-info' %>
+  </div>
+<% end %>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_11_21_125410) do
+=======
+ActiveRecord::Schema.define(version: 2018_12_05_183512) do
+>>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +26,27 @@ ActiveRecord::Schema.define(version: 2018_11_21_125410) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.float "amount"
+    t.integer "user_id"
+    t.integer "auction_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "residence_id"
+    t.bigint "auction_id"
+    t.date "reservation_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["auction_id"], name: "index_reservations_on_auction_id"
+    t.index ["residence_id"], name: "index_reservations_on_residence_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "residences", force: :cascade do |t|
@@ -32,6 +57,31 @@ ActiveRecord::Schema.define(version: 2018_11_21_125410) do
     t.boolean "deleted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
+    t.string "city"
+    t.string "zip"
+    t.string "address"
+    t.string "description"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "last_name"
+    t.integer "cvv"
+    t.date "expiration_credit_card"
+    t.boolean "premium", default: false
+    t.date "birth_date"
+    t.boolean "admin", default: false
+    t.string "credit_card"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "users", force: :cascade do |t|
