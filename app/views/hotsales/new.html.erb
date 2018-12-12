@@ -1,6 +1,7 @@
 <h3> Nuevo Hot-Sale </h3>
 <%= simple_form_for @hotsale do |hotsale| %>
   <%= hotsale.input :reservation_id, label: 'Id de reserva', required: true , collection: Reservation.all.map { |r| [r.residence.name, r.id ] }%>
+  <%= hotsale.input :reservation_date, label: 'Fecha de reserva', required: true , collection: Reservation.all.map { |r| [r.residence.reservations.reservation_date, r.id ] }%>
   <%= hotsale.input :name, label: 'Nombre', required: true, as: :string %>
   <%= hotsale.input :amount, label: 'Monto', required: true, as: :float %>
   <%= hotsale.submit 'Guardar Hot-sale', class:'btn btn-info' %>

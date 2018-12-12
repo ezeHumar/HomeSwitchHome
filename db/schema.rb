@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_183512) do
     t.date "birth_date"
     t.boolean "admin", default: false
     t.string "credit_card"
+    t.integer "credit"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

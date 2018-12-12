@@ -2,14 +2,16 @@
 <% if current_user.admin? %>
 <table class="table">
   <tr>
-    <th>Id de Reserva</th>
-    <th>Nombre</th>
+    <th>Residencia</th>
+    <th>Nombre de Promocion</th>
+    <th>Fecha de Reserva</th>
     <th>Precio Promocional</th>
   </tr>
   <%@hotsales.each do |hotsale|%>
   <tr>
-    <td><%=hotsale.reservation_id%></td>
+    <td><%=hotsale.reservation.residence.name%></td>
     <td><%=hotsale.name%></td>
+    <td><%=hotsale.reservation.reservation_date%></td>
     <td><%=hotsale.amount%></td>
   </tr>
   <% end %>
