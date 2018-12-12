@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-<h2>Sign up</h2>
-=======
 <h2>Registrarse</h2>
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-<<<<<<< HEAD
-=======
     <%= f.input :name,
                 required: true,
                 autofocus: true ,
@@ -25,28 +19,20 @@
                 autofocus: true ,
                 label: 'Fecha de nacimiento:' ,
                 input_html: { data: {provide: 'datepicker', 'date-format' =>"yyyy-mm-dd"}, class: 'birthdate-picker' }%>
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
     <%= f.input :email,
                 required: true,
                 autofocus: true ,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
-<<<<<<< HEAD
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-=======
                 hint: ("#{@minimum_password_length} caracteres como minimo" if @minimum_password_length),
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
-<<<<<<< HEAD
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-=======
     <%= f.input :credit_card,
                 required: true,
                 autofocus: true ,
@@ -67,7 +53,6 @@
   </div>
   <div class="form-actions">
     <%= f.button :submit, "Registrarse" %>
->>>>>>> 5d1d88d6f44f5daf031987a16db86f698b390abe
   </div>
 <% end %>
 

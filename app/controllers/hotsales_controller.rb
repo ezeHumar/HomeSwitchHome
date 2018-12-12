@@ -12,6 +12,7 @@ class HotsalesController < ApplicationController
 
   def new
     @hotsale = Hotsale.new
+    @reservations = Reservation.all.where(user_id: nil)
   end
 
   def create
