@@ -23,13 +23,16 @@ class AuctionsController < ApplicationController
     @auction = Auction.new(auction_params.merge(startDate: auction_startDate, user: current_user))
     @auction.amount = 0
 
-    if @auction.save
-      Reservation.create(residence_id: auction_params[:residence_id], reservation_date: auction_params[:startDate], auction_id: @auction.id)
+    Auction.transaction do
+      @auction.save!
+      @reservation = Reservation.new(residence_id: auction_params[:residence_id], reservation_date: auction_params[:startDate], auction_id: @auction.id)
+      @reservation.save!
       flash[:info]="Subasta cargada correctamente"
       redirect_to auctions_path
-    else
-      render :new
     end
+  rescue
+    flash[:error] = @reservation.errors.full_messages.join(', ')
+    render :new
   end
 
   def destroy
@@ -47,6 +50,8 @@ class AuctionsController < ApplicationController
   def edit
     # params = { id: 7}
     @auction = Auction.find(params[:id])
+    max =
+    @offer = Offer.new
   end
 
   def update
@@ -60,7 +65,14 @@ class AuctionsController < ApplicationController
     end
   end
 
+  def close
+    if current_user.admin?
 
+    else
+      redirect_to auctions_path
+    end
+
+  end
 
   private
 

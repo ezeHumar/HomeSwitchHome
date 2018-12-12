@@ -3,6 +3,7 @@ class Auction < ApplicationRecord
   has_one :reservation
   belongs_to :residence
   belongs_to :user
+  has_many :offers
 
   validates :amount, numericality: { greater_than: :amount_was }, if: :persisted?
   validates :residence_id, presence: true
@@ -14,14 +15,8 @@ class Auction < ApplicationRecord
   private
 
   def fecha_no_repetida
-    rep=false
-    @auctions.each do |a|
-      if a.startDate == startDate
-        rep=true
-        break
-      end
-    end
-    if rep?
+
+    if
         errors.add(:startDate, "La fecha ingresada ya esta asignada a una subasta de esta residencia")
     end
   end

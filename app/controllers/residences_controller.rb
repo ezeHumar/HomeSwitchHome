@@ -2,8 +2,13 @@ class ResidencesController < ApplicationController
   def show
     @residence = Residence.find(params[:id])
   end
+
   def index
-    @residences = Residence.all
+    if params[:search].blank?
+      @residences = Residence.all
+    else
+      @residences = Residence.search_by_parameter(params[:search])
+    end
   end
 
   def new
@@ -57,8 +62,14 @@ class ResidencesController < ApplicationController
   def profile
     @residence = Residence.find(params[:id])
   end
+
+  def country_name
+    country = ISO3166::Country[country_code]
+    country.translations[I18n.locale.to_s] || country.name
+  end
+  
   private
   def residence_params
-    params.require(:residence).permit(:name, :country, :zip, :city, :address, :capacity, :photos, :description)
+    params.require(:residence).permit(:name, :country, :zip, :city, :address, :capacity, :photos, :description, :search)
   end
 end

@@ -8,4 +8,15 @@ class Residence < ApplicationRecord
   validates :city, presence: true
   validates :zip, presence: true
   validates :address, presence: true
+
+  include PgSearch
+
+  pg_search_scope :search_by_parameter, :against => {
+    :name => 'A',
+    :location => 'B',
+    :city => 'C',
+    :zip => 'C',
+    :address=> 'C'
+  }
+
 end
