@@ -12,6 +12,12 @@ class Auction < ApplicationRecord
   #validate :fecha_no_repetida
   validates_format_of :email, allow_nil: true,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
+
+  def max_offer
+    offers.order(:amount).last
+  end
+
+
   private
 
   def fecha_no_repetida

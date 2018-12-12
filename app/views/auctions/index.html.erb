@@ -11,9 +11,8 @@
     <% end%>
     <th>Precio actual</th>
     <th>Mejor postor</th>
-    <% if !current_user.admin? %>
-      <th>Accion</th>
-    <%end%>
+    <th>Accion</th>
+
   </tr>
   <%@auctions.each do |auction|%>
   <tr>
@@ -22,9 +21,9 @@
     <% if current_user.admin? %>
       <td><%=auction.startDate%></td>
     <% end%>
-    <td><%=auction.amount%></td>
+    <td><%=auction.offers.last&.amount%></td>
     <td>
-      <% if auction.user.admin? %>
+      <% if !auction.offers.any? %>
 
         <% if current_user.admin? %>
           <%='Nadie aún'%>
@@ -32,7 +31,7 @@
           <%='Nadie'%>
         <% end %>
       <% else %>
-        <%=auction.user.email%>
+        <%=auction.offers.last.user.email%>
       <% end %>
       </td>
 
@@ -41,6 +40,12 @@
         <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
       <% else %>
         <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
+      <% end %>
+    <% else %>
+      <% if auction.startDate < Date.today + 3.days %>
+        <td><button type="button" class="btn btn-success">Terminar subasta</button></td>
+      <% else %>
+        <td><button type="button" class="btn btn-dark">Terminar subasta</button></td>
       <% end %>
     <% end %>
   </tr>

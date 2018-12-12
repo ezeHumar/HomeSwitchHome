@@ -50,7 +50,6 @@ class AuctionsController < ApplicationController
   def edit
     # params = { id: 7}
     @auction = Auction.find(params[:id])
-    max =
     @offer = Offer.new
   end
 
@@ -66,12 +65,21 @@ class AuctionsController < ApplicationController
   end
 
   def close
-    if current_user.admin?
+      @auction = Auction.find(params[:id])
+      i = 1
+      b = 0 #Va a ser 0 siempre que no se llegue a la menor oferta (osea la ultima)
+      while b == 0 && @auction.offers.order(amount:).last(i).first == 0 do
+        i = i+1
+        if @auction.offers.order(amount:).last(i).first == @auction.offers.order(amount:).first
+          b=1
+        end
+      end
 
-    else
-      redirect_to auctions_path
-    end
-
+      if b = 0
+        #crear nueva hot-sale porque no hay usuarios con credito
+      else
+        #@auction.user = @auction.offers.order(amount:).last(i).first.user
+      end
   end
 
   private
