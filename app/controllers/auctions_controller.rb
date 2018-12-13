@@ -75,19 +75,23 @@ class AuctionsController < ApplicationController
         flash[:info]='No se adjudicó'
         redirect_to auction_path
       else
-        @auction.user = offer.user
-        @auction.reservation.users = offer.user
-        offer.user.credit = offer.user.credit - 1
+
+        @auction.reservation.update(user: offer.user)
+        @auction.update(user: offer.user)
+        offer.user.update(credit: offer.user.credit - 1)
+        flash[:info]='Cerrada'
+        redirect_to auction_path
       end
   end
 
   def reserve
       @auction = Auction.find(params[:id])
 
-      if current_user.credit>0
-        @auction.user = current_user
-        @auction.reservation.users = current.user
-        current_user.credit = current_user.credit - 1
+      if current_user.credit > 0
+        @auction.reservation.update(user: current_user)
+        @auction.update(user: current_user)
+        current_user.update(credit: current_user.credit - 1)
+
       else
         flash[:info]='No tenés creditos suficientes'
         redirect_to auction_path

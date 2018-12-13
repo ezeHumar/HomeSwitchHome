@@ -9,6 +9,11 @@ class Residence < ApplicationRecord
   validates :zip, presence: true
   validates :address, presence: true
 
+  def country_name
+    country = self.country
+    ISO3166::Country.new(country).translation("es")
+  end
+
   include PgSearch
 
   pg_search_scope :search_by_parameter, :against => {

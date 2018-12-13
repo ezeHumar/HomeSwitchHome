@@ -22,3 +22,11 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+
+
+
+document.addEventListener("turbolinks:load", function(){
+  $('.reservationDate-picker').datepicker({
+      format: "dd/mm/yyyy"
+  });
+})

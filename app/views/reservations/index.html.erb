@@ -4,12 +4,63 @@
 <tr>
   <th>Reserva</th>
   <th>Fecha de reserva</th>
+  <th>Acciones</th>
 </tr>
 
   <%@reservations.order(:reservation_date).each do |reservation|%>
   <tr>
     <td><%=reservation.residence.name%></td>
     <td><%=reservation.reservation_date%></td>
+
+    <% if !current_user.premium? %>
+      <% if !current_user.admin? %>
+
+        <% if reservation.auction.startDate > Date.today %>
+          <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+        <% else %>
+
+          <% if reservation.auction.user.admin? %>
+            <td><%=link_to 'Subastar', new_auction_offer_path(reservation.auction.id), class: 'btn btn-outline-success'%></td>
+          <% else %>
+            <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+          <% end %>
+
+        <% end %>
+
+      <% else %>
+        <% if reservation.auction.startDate < Date.today + 3.days %>
+
+          <% if reservation.auction.user.admin? %>
+            <td><%=button_to 'Terminar subasta', [:close, reservation.auction], class:"btn btn-seccess", data: { confirm: '¿Quiere termina la subasta?' }%></td>
+            <% else %>
+              <td><button type="button" class="btn success" disabled>Terminar subasta</button></td>
+            <% end %>
+
+        <% else %>
+          <td><button type="button" class="btn success" disabled>Terminar subasta</button></td>
+        <% end %>
+
+      <% end %>
+    <% end %>
+
+    <% if current_user.premium? %>
+      <% if reservation.auction.startDate > Date.today %> <%# Si esta cerrada  %>
+
+        <% if reservation.auction.user.admin? %> <%# Si no esta adjudicada  %>
+          <td><%=button_to 'Reservar', [:reserve, reservation.auction], class:"btn btn-seccess", data: { confirm: '¿Quiere reservar la residencia?' }%></td>
+
+        <% else %> <%# Si esta adjudicada %>
+          <td><button type="button" class="btn success" disabled>Reservar</button></td>
+        <% end %>
+
+      <% else %> <%# Si esta abierta %>
+        <% if reservation.auction.user.admin? %> <%# Si no esta adjudicada  %>
+          <td><%=link_to 'Subastar', new_auction_offer_path(reservation.auction.id), class: 'btn btn-outline-success'%></td>
+        <% else %> <%# Si esta adjudicada  %>
+          <td><button type="button" class="btn success" disabled>Subastar</button></td>
+        <% end %>
+      <% end %>
+    <% end %>
     </tr>
   <% end %>
 

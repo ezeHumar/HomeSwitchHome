@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :admin do
     root 'residences#index'
-    resources :residences
+    resources :residences do
+      post :country_name, on: :member
+    end
     resources :auctions
     resources :users
     resources :edit

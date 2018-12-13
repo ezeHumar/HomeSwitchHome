@@ -1,21 +1,34 @@
 <h1>Bienvenido a HomeSwitchHome</h1>
 
+<hr>
+
+<h3>Buscador de reservas:</h3>
 
 <div class="row">
   <div class="col-lg-6">
-      <%= form_tag(reservations_path, method: :get) do %>
+      <%# form_tag(reservations_path, method: :get) do %>
         <div class="input-group">
-        <%= select_tag "residence_id", options_from_collection_for_select(@residences, "id", "name") %>
-          <%= date_field_tag(:date_start)%>
-          <%= date_field_tag(:date_end)%>
+          <%# select_tag "residence_id", options_from_collection_for_select(@residences, "id", "name"), :class => 'form-control' %>
+          <%# date_field_tag(:date_start) %>
+          <%# date_field_tag(:date_end)%>
         <span class="input-group-btn">
-          <%= submit_tag("Buscar", class: 'btn btn-info') %>
+          <%# submit_tag("Buscar", class: 'btn btn-info') %>
         </span>
-      <% end %>
+      <%# end %>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 
+<%= simple_form_for :reservation, url: reservations_path, method: :get do |f| %>
+
+  <%= f.input :residence_id, label: 'Residencia', required: true, collection: Residence.all.reject { |s| s.deleted == true }.map { |r| [r.name, r.id] }%>
+
+    <%= f.input :date_start, label: 'Fecha inicio', required: true, input_html: { class: 'reservationDate-picker' }, as: :string %>
+    <%= f.input :date_end, label: 'Fecha fin', required: true, input_html: { class: 'reservationDate-picker' }, as: :string %>
+    <%= f.button :submit, 'Buscar', class: 'btn btn-info' %>
+<% end %>
+
+<hr>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">

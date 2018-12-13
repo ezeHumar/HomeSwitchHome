@@ -63,10 +63,7 @@ class ResidencesController < ApplicationController
     @residence = Residence.find(params[:id])
   end
 
-  def country_name
-    country = ISO3166::Country[country]
-    country.translations[I18n.locale.to_s] || country.name
-  end
+  
 
   private
   def residence_params
