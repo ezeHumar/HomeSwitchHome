@@ -15,7 +15,7 @@
     <th>Accion</th>
 
   </tr>
-  <%@auctions.each do |auction|%>
+  <%@auctions.order(:startDate).each do |auction|%>
   <tr>
     <td><%=auction.residence.name %></td>
     <td><%=auction.reservation&.reservation_date%></td>
