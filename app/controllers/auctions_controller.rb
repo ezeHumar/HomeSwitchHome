@@ -66,20 +66,33 @@ class AuctionsController < ApplicationController
 
   def close
       @auction = Auction.find(params[:id])
-      i = 1
-      b = 0 #Va a ser 0 siempre que no se llegue a la menor oferta (osea la ultima)
-      while b == 0 && @auction.offers.order(amount:).last(i).first == 0 do
-        i = i+1
-        if @auction.offers.order(amount:).last(i).first == @auction.offers.order(amount:).first
-          b=1
-        end
+      offer = @auction.offers.order(amount: :desc).detect do |offer|
+        offer.user.credit != 0
       end
 
-      if b = 0
-        #crear nueva hot-sale porque no hay usuarios con credito
+      if offer.nil?
+        #crear hot hotsale
+        flash[:info]='No se adjudicó'
+        redirect_to auction_path
       else
-        #@auction.user = @auction.offers.order(amount:).last(i).first.user
+        @auction.user = offer.user
+        @auction.reservation.users = offer.user
+        offer.user.credit = offer.user.credit - 1
       end
+  end
+
+  def reserve
+      @auction = Auction.find(params[:id])
+
+      if current_user.credit>0
+        @auction.user = current_user
+        @auction.reservation.users = current.user
+        current_user.credit = current_user.credit - 1
+      else
+        flash[:info]='No tenés creditos suficientes'
+        redirect_to auction_path
+      end
+
   end
 
   private

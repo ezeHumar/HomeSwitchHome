@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :credit_card, length: { is: 16 }
   validates :cvv, length: { is: 3 }
   validate :age_mayor_18_anios
-  validate :fecha_futura
+  validate :fecha_futura, on: :create
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
