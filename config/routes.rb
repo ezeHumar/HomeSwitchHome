@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     root 'welcome#index'
   resources :auctions do # index create edit update destroy
     post :close, on: :member
+    post :reserve, on: :member
     resources :offers
+
   end
   resources :residences do
     get :profile, on: :member

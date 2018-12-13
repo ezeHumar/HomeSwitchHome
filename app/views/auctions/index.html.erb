@@ -11,42 +11,53 @@
     <% end%>
     <th>Precio actual</th>
     <th>Mejor postor</th>
+    <th>Adjudicada a:</th>
     <th>Accion</th>
 
   </tr>
   <%@auctions.each do |auction|%>
   <tr>
     <td><%=auction.residence.name %></td>
-    <td><%=auction.startDate+6.months%></td>
+    <td><%=auction.reservation&.reservation_date%></td>
     <% if current_user.admin? %>
       <td><%=auction.startDate%></td>
     <% end%>
     <td><%=auction.offers.last&.amount%></td>
     <td>
       <% if !auction.offers.any? %>
-
-        <% if current_user.admin? %>
           <%='Nadie aún'%>
-        <% else %>
-          <%='Nadie'%>
-        <% end %>
       <% else %>
         <%=auction.offers.last.user.email%>
       <% end %>
       </td>
 
     <% if !current_user.admin? %>
+
       <% if auction.startDate > Date.today %>
         <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
       <% else %>
-        <td><%=link_to 'Subastar', [:edit, auction], class: 'btn btn-outline-success'%></td>
+
+        <% if auction.user.admin? %>
+          <td><%=link_to 'Subastar', new_offer_path(auction.id), class: 'btn btn-outline-success'%></td>
+        <% else %>
+          <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+        <% end %>
+
       <% end %>
+
     <% else %>
       <% if auction.startDate < Date.today + 3.days %>
-        <td><button type="button" class="btn btn-success">Terminar subasta</button></td>
+
+        <% if auction.user.admin? %>
+          <td><%= link_to 'Terminar subasta', close_auction_path(auction.id), class: 'btn btn-outline-info' %></td>
+          <% else %>
+            <td><button type="button" class="btn success" disabled>Terminar subasta</button></td>
+          <% end %>
+
       <% else %>
-        <td><button type="button" class="btn btn-dark">Terminar subasta</button></td>
+        <td><button type="button" class="btn success" disabled>Terminar subasta</button></td>
       <% end %>
+
     <% end %>
   </tr>
   <%end%>
@@ -70,9 +81,22 @@
     <td><%=auction.residence.name %></td>
     <td><%=auction.startDate%></td>
 
-    <% if !current_user.admin? %>
-      <td><button type="button" class="btn btn-success">Reservar</button></td>
+    <% if auction.startDate > Date.today %> <%# Si esta cerrada  %>
+
+      <% if auction.user.admin? %> <%# Si no esta adjudicada  %>
+        <td><%=link_to 'Reservar', reserve_auction_path(auction.id), class: 'btn btn-outline-success'%></td>
+      <% else %> <%# Si esta adjudicada %>
+        <td><button type="button" class="btn success" disabled>Reservar</button></td>
+      <% end %>
+
+    <% else %> <%# Si esta abierta %>
+      <% if auction.user.admin? %> <%# Si no esta adjudicada  %>
+        <td><<%=link_to 'Subastar', new_offer_path(auction.id), class: 'btn btn-outline-success'%></td>
+      <% else %> <%# Si esta adjudicada  %>
+        <td><button type="button" class="btn success" disabled>Subastar</button></td>
+      <% end %>
     <% end %>
+
   </tr>
   <%end%>
   </table>
