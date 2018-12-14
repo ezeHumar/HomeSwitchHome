@@ -71,6 +71,7 @@ class AuctionsController < ApplicationController
       end
 
       if offer.nil?
+        @auction.reservation.update(user: current_user)
         @auction.update(user: current_user)
         flash[:info]='No se adjudicó'
         redirect_to auction_path

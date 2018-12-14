@@ -28,13 +28,10 @@ es:
       auction:
         startDate: 'Fecha de reserva'
         residence_id: 'Residencia'
-<<<<<<< HEAD
-      offer:
-=======
       hotsale:
         name: 'Nombre'
         reservation_id: 'Reserva'
->>>>>>> f4d4240a096c41094c04e9ea198bd1657e5ca640
+      offer:
         amount: 'Monto'
     errors:
       messages:
