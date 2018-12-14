@@ -189,3 +189,34 @@
     <%= link_to 'Agregar subasta', new_auction_path, class: 'btn btn-info'%>
   </div>
 <% end %>
+
+<% if !current_user.admin? && current_user.auctions.any? %>
+ <hr>
+  <h3>Ganadas:</h3>
+
+  <table class="table">
+  <tr>
+    <th>Residencia</th>
+    <th>Fecha de reserva</th>
+    <th>Adjudicada a:</th>
+
+  </tr>
+  <%@auctions.order(:startDate).each do |auction|%>
+    <% if auction.user == current_user %>
+      <tr>
+        <td><%=auction.residence.name %></td>
+        <td><%=auction.reservation&.reservation_date%></td>
+
+        <td>
+          <% if auction.user.nil? %>
+              <%='Nadie'%>
+          <% else %>
+            <%=auction.user.email%>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <%end%>
+  </table>
+
+<% end %>
