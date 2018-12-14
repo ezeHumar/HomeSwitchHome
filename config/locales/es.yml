@@ -2,6 +2,9 @@
 es:
   activerecord:
     models:
+      hotsale:
+        one: 'Promoción'
+        other: 'Promociones'
       residence:
         one: 'Residencia'
         other: 'Residencias'
@@ -22,6 +25,10 @@ es:
       auction:
         startDate: 'Fecha de reserva'
         residence_id: 'Residencia'
+      hotsale:
+        name: 'Nombre'
+        reservation_id: 'Reserva'
+        amount: 'Monto'
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"

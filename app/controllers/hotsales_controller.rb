@@ -17,6 +17,7 @@ class HotsalesController < ApplicationController
 
   def create
     @hotsales = Hotsale.all
+    @reservations = Reservation.all.where(user_id: nil)
     @hotsale = Hotsale.new(hotsale_params)
     if @hotsale.save
 

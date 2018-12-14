@@ -1,16 +1,18 @@
 <h3>Usuarios</h3>
 <table class="table">
   <tr>
+    <th>ID usuario</th>
     <th>Apellido</th>
     <th>Nombre</th>
     <th>Categoria</th>
-    <th>Accion</th>
     <th>e-mail</th>
     <th>Creditos</th>
+    <th>Accion</th>
   </tr>
   <%@users.order(:last_name).each do |user|%>
   <% if !user.admin? %>
     <tr>
+      <td><%= user.id %></td>
       <td><%= user.last_name %></td>
       <td><%= user.name %></td>
       <td>
@@ -21,6 +23,8 @@
           <%= 'Basico' %>
         <% end %>
       </td>
+      <td><%= user.email %></td>
+      <td><%= user.credit %></td>
       <td><% if user.premium == false %>
             <%= simple_form_for [:admin, user] do |u| %>
               <%= u.input :premium, as: :hidden, input_html: { value: true } %>
@@ -32,9 +36,8 @@
               <%= u.submit "Pasar a Basico" , class:'btn btn-info' , data: { confirm: '¿Esta seguro que desea cambiar la categoria del usuario a Basico?' }%>
             <% end %>
         <%end%>
+
       </td>
-      <td><%= user.email %></td>
-      <td><%= user.credit %></td>
     </tr>
   <%end%>
 <%end%>
