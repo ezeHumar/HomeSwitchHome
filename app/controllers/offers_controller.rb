@@ -11,7 +11,7 @@ class OffersController < ApplicationController
       @offer= Offer.new(params.require(:offer).permit(:amount))
       @offer.auction = @auction
       @offer.user = current_user
-      if !@auction.max_offer.nil? && @offer.amount < @auction.max_offer.amount
+      if !@auction.max_offer.nil? && @offer.amount <= @auction.max_offer.amount
         flash[:danger] = "El monto debe ser mayor a #{@auction.max_offer.amount}"
         render :new
     elsif @offer.save

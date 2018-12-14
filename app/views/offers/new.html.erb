@@ -2,7 +2,11 @@
 
   <%= simple_form_for [@auction , @offer] do |offer| %>
     <%# offer.input :amount, label: "Monto (Mayor a: #{@auction.offers.last.amount})", placeholder: @auction.offers.last.amount, required: true %>
-    <%= offer.input :amount, required: true %>
+    <% if @auction.offers.any? %>
+      <%= offer.input :amount, label: "Monto (Mayor a: #{@auction.offers.last.amount})", placeholder: @auction.offers.last.amount, required: true %>
+    <% else %>
+      <%= offer.input :amount, label: "Mayor a 0", placeholder: '0', required: true %>
+    <% end %>
     <div>
           <%= offer.submit '¡Subastar!', class:'btn btn-success', validate: false %>
           <%= link_to 'Atras', auctions_path, class: 'btn btn-outline-info' %>

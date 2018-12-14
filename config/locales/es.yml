@@ -11,6 +11,9 @@ es:
       auction:
         one: 'Subasta'
         other: 'Subastas'
+      offer:
+        one: 'Oferta'
+        other: 'Ofertas'
     attributes:
       residence:
         name: 'Nombre'
@@ -28,6 +31,7 @@ es:
       hotsale:
         name: 'Nombre'
         reservation_id: 'Reserva'
+      offer:
         amount: 'Monto'
     errors:
       messages:

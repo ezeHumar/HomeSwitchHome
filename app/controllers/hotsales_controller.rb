@@ -12,12 +12,12 @@ class HotsalesController < ApplicationController
 
   def new
     @hotsale = Hotsale.new
-    @reservations = Reservation.all.where(user_id: nil)
+    #@reservations = Reservation.all.where(@user.admin?)
   end
 
   def create
     @hotsales = Hotsale.all
-    @reservations = Reservation.all.where(user_id: nil)
+    #@reservations = Reservation.all.where(user_id: nil)
     @hotsale = Hotsale.new(hotsale_params)
     if @hotsale.save
 

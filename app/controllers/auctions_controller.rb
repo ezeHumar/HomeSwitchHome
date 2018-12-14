@@ -20,7 +20,7 @@ class AuctionsController < ApplicationController
     end
 
     @auctions = Auction.all
-    @auction = Auction.new(auction_params.merge(startDate: auction_startDate, user: current_user))
+    @auction = Auction.new(auction_params.merge(startDate: auction_startDate))
     @auction.amount = 0
 
     Auction.transaction do
@@ -71,7 +71,8 @@ class AuctionsController < ApplicationController
       end
 
       if offer.nil?
-        #crear hot hotsale
+        @auction.reservation.update(user: current_user)
+        @auction.update(user: current_user)
         flash[:info]='No se adjudicó'
         redirect_to auction_path
       else
@@ -91,6 +92,8 @@ class AuctionsController < ApplicationController
         @auction.reservation.update(user: current_user)
         @auction.update(user: current_user)
         current_user.update(credit: current_user.credit - 1)
+        flash[:info]='La reserva se ha realizado con exito'
+        redirect_to auction_path
 
       else
         flash[:info]='No tenés creditos suficientes'
