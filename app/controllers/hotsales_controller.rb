@@ -39,8 +39,9 @@ class HotsalesController < ApplicationController
 
   end
   def buy_hotsale
-    @hotsale = Hotsale.find(params[:reservation_id])
-    @hotsale.update(user: current_user)
+    @hotsale = Hotsale.find(params[:id])
+    @hotsale.reservation.update(user: current_user)
+    flash[:info]='La promoción se ha comprado con éxito'
     redirect_to hotsales_path
   end
 private

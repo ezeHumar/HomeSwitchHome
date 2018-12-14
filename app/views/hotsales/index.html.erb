@@ -25,16 +25,22 @@
 <% if !current_user.admin? %>
 <div class="card-deck">
   <% @hotsales.each do |hotsale| %>
-  <div class="card">
-      <%= image_tag hotsale.reservation.residence.photos, style: 'height:40%;width:100%;' %>
-      <div class="card-body">
-        <h3 class="card-title">Precio $<%=hotsale.amount%></h3>
-        <p class="card-text"><%= hotsale.name %></p>
-        <p class="card-text">Fecha: <%= hotsale.reservation.reservation_date %></p>
-        <p class="card-text"><%= hotsale.reservation.residence.description %></p>
-        <%= link_to '¡Comprar ahora!', buy_hotsale_hotsale_path(reservation.id), class: 'btn btn-outline-success', data: { confirm: '¿Desea confirmar la compra?' } %>
-      </div>
-    </div>
+    <% if hotsale.reservation.user.admin? || hotsale.reservation.user == current_user %>
+      <div class="card">
+          <%= image_tag hotsale.reservation.residence.photos, style: 'height:40%;width:100%;' %>
+          <div class="card-body">
+            <h3 class="card-title">Precio $<%=hotsale.amount%></h3>
+            <p class="card-text"><%= hotsale.name %></p>
+            <p class="card-text">Fecha: <%= hotsale.reservation.reservation_date %></p>
+            <p class="card-text"><%= hotsale.reservation.residence.description %></p>
+            <% if hotsale.reservation.user == current_user %>
+              <button type="button" class="btn btn-success">Comprado</button>
+            <% else %>
+              <%= button_to '¡Comprar ahora!', [:buy_hotsale, hotsale], class: 'btn btn-outline-success', data: { confirm: '¿Desea confirmar la compra?' } %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
   <% end %>
 </div>
 
