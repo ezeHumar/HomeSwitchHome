@@ -2,7 +2,7 @@ class Auction < ApplicationRecord
 
   has_one :reservation
   belongs_to :residence
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :offers
 
   #validates :amount, numericality: { greater_than: :amount_was }, if: :persisted?

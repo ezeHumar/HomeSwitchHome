@@ -8,6 +8,9 @@ es:
       auction:
         one: 'Subasta'
         other: 'Subastas'
+      offer:
+        one: 'Oferta'
+        other: 'Ofertas'
     attributes:
       residence:
         name: 'Nombre'
@@ -22,6 +25,8 @@ es:
       auction:
         startDate: 'Fecha de reserva'
         residence_id: 'Residencia'
+      offer:
+        amount: 'Monto'
     errors:
       messages:
         record_invalid: "La validación falló: %{errors}"
