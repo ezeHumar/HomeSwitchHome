@@ -20,7 +20,6 @@ class HotsalesController < ApplicationController
     #@reservations = Reservation.all.where(user_id: nil)
     @hotsale = Hotsale.new(hotsale_params)
     if @hotsale.save
-
       flash[:info]="Hot-sale cargado correctamente"
       redirect_to hotsales_path
     else
@@ -29,6 +28,7 @@ class HotsalesController < ApplicationController
   end
 
   def destroy
+
   end
 
   def edit
@@ -38,7 +38,11 @@ class HotsalesController < ApplicationController
   def update
 
   end
-
+  def buy_hotsale
+    @hotsale = Hotsale.find(params[:reservation_id])
+    @hotsale.update(user: current_user)
+    redirect_to hotsales_path
+  end
 private
 def hotsale_params
   params.require(:hotsale).permit(:reservation_id, :name, :amount)

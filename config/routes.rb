@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :offers
-  resources :hotsales
+  resources :hotsales do
+    post :buy_hotsale, on: :member
+  end
   devise_for :users
   namespace :admin do
     root 'residences#index'
