@@ -14,7 +14,7 @@
     <th>Accion</th>
 
   </tr>
-  <%@auctions.each do |auction|%>
+  <%@auctions.order(:startDate).each do |auction|%>
     <% if auction.startDate + 15.days > Date.today %>
       <tr>
         <td><%=auction.residence.name %></td>
@@ -136,7 +136,7 @@
       <th>Accion</th>
     <%end%>
   </tr>
-  <% @auctions.each do |auction|%>
+  <% @auctions.order(:startDate).each do |auction|%>
     <% if auction.startDate + 15.days > Date.today %>
       <tr>
         <td><%=auction.residence.name %></td>

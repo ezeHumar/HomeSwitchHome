@@ -23,29 +23,44 @@
     <th>Inicio de subasta</th>
     <th>Accion</th>
   </tr>
-  <% @residence.reservations.where('reservation_date > ?', 6.months.from_now).limit(10).order(:reservation_date).each do |r| %>
+  <% @residence.reservations.where('reservation_date > ?', Date.today).limit(10).order(:reservation_date).each do |r| %>
     <tr>
         <td><%= r.reservation_date %></td>
         <td>
-          <% if r.auction.startDate < Date.today %>
             <%= r.auction.startDate %>
-            <%= '¡Activa!' %>
-            <% else %>
-              <%= r.auction.startDate %>
-            <% end %>
         </td>
-        <td>
           <% if current_user.premium? %>
-            <button type="button" class="btn btn-success">Reservar</button>
+            <% if r.auction.startDate > Date.today %> <%# Si esta cerrada  %>
+
+              <% if r.auction.user.nil? %> <%# Si no esta adjudicada  %>
+                <td><%=button_to 'Reservar', [:reserve, r.auction], class:"btn btn-success", data: { confirm: '¿Quiere reservar la residencia?' }%></td>
+
+              <% else %> <%# Si esta adjudicada %>
+                <td><button type="button" class="btn success" disabled>Reservar</button></td>
+              <% end %>
+
+            <% else %> <%# Si esta abierta %>
+              <% if r.user.nil? %> <%# Si no esta adjudicada  %>
+                <td><%=link_to 'Subastar', new_auction_offer_path(r.auction.id), class: 'btn btn-outline-success'%></td>
+              <% else %> <%# Si esta adjudicada  %>
+                <td><button type="button" class="btn success" disabled>Subastar</button></td>
+              <% end %>
+              <% end %>
             <% else %>
 
-              <% if r.auction.startDate < Date.today %>
-                <%= link_to 'Subastar', [:edit, r.auction], class: 'btn btn-outline-success' %>
-                <% else %>
-                  <button type="button" class="btn btn-success" disabled>Subastar</button>
-                <% end %>
+            <% if r.auction.startDate > Date.today %>
+              <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+            <% else %>
+
+              <% if r.auction.user.nil? %>
+                <td><%=link_to 'Subastar', new_auction_offer_path(r.auction.id), class: 'btn btn-outline-success'%></td>
+              <% else %>
+                <td><button type="button" class="btn btn-success" disabled>Subastar</button></td>
+              <% end %>
+
             <% end %>
-        </td>
+
+            <% end %>
     </tr>
   <% end %>
 </table>
