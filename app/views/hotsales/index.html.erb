@@ -1,5 +1,5 @@
-<h3>¡Promociones!</h3>
 <% if current_user.admin? %>
+<h3>Promociones</h3>
 <table class="table">
   <tr>
     <th>Residencia</th>
@@ -23,6 +23,7 @@
 </div>
 <%end%>
 <% if !current_user.admin? %>
+<h3>¡Promociones!</h3>
 <div class="card-deck">
   <% @hotsales.each do |hotsale| %>
     <% if hotsale.reservation.user.admin? || hotsale.reservation.user == current_user %>
