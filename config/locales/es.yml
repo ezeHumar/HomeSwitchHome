@@ -2,6 +2,9 @@
 es:
   activerecord:
     models:
+      hotsale:
+        one: 'Promoción'
+        other: 'Promociones'
       residence:
         one: 'Residencia'
         other: 'Residencias'
@@ -25,7 +28,13 @@ es:
       auction:
         startDate: 'Fecha de reserva'
         residence_id: 'Residencia'
+<<<<<<< HEAD
       offer:
+=======
+      hotsale:
+        name: 'Nombre'
+        reservation_id: 'Reserva'
+>>>>>>> f4d4240a096c41094c04e9ea198bd1657e5ca640
         amount: 'Monto'
     errors:
       messages:
