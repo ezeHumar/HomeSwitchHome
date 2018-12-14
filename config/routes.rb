@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     resources :update
   end
 
-
-
     root 'welcome#index'
   resources :auctions do # index create edit update destroy
     post :close, on: :member
@@ -26,7 +24,9 @@ Rails.application.routes.draw do
     get :profile, on: :member
     get :week, on: :member
   end#, only: [:index] # index create edit update destroy
-  resources :users
+  resources :users do
+    post :give_credit, on: :collection
+  end
   resources :reservations
   resources :search, only: [:index]
 #  resources :update

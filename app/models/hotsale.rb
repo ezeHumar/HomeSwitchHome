@@ -1,5 +1,6 @@
 class Hotsale < ApplicationRecord
   belongs_to :reservation
+  belongs_to :user
 
   validates :amount, presence: true
   validates :amount, numericality: { only_float: true, greater_than: 0 }
