@@ -13,61 +13,63 @@ class AuctionsController < ApplicationController
 
   def create
 
-     begin
+      begin
 
- 		auction_startDate = Date.strptime(auction_params[:startDate], '%d/%m/%Y') - 6.months
+  		auction_startDate = Date.strptime(auction_params[:startDate], '%d/%m/%Y') - 6.months
 
-     rescue
+      rescue
 
- 		auction_startDate = nil
+  		auction_startDate = nil
 
-     end
-
-
-
-     @auctions = Auction.all
-
-     @auction = Auction.new(auction_params.merge(startDate: auction_startDate))
-
-     @auction.amount = 0
+      end
 
 
 
- 	ok = begin
+      @auctions = Auction.all
 
- 		Auction.transaction do
+      @auction = Auction.new(auction_params.merge(startDate: auction_startDate))
 
- 		  @auction.save!
+      @auction.amount = 0
 
- 		  @reservation = Reservation.new(residence_id: auction_params[:residence_id], reservation_date: auction_params[:startDate], auction_id: @auction.id)
-
- 		  @reservation.save!
-
- 		end
-
- 	rescue
-
- 		nil
-
- 	end
+  	@reservation = Reservation.new(residence_id: auction_params[:residence_id], reservation_date: auction_params[:startDate])
 
 
 
- 	if ok
+  	ok = begin
 
- 		flash[:info]="Subasta cargada correctamente"
+  		Auction.transaction do
 
- 		redirect_to auctions_path
+  		  @auction.save!
 
- 	else
+  		  @reservation.auction_id = @auction.id
 
- 		flash[:error] = @reservation.errors.full_messages.join(', ')
+  		  @reservation.save!
 
- 		render :new
+  		end
 
- 	end
+  	rescue
 
- end
+  		nil
+
+  	end
+
+
+
+  	if ok
+
+  		flash[:info]="Subasta cargada correctamente"
+
+  		redirect_to auctions_path
+
+  	else
+
+  	#	flash[:error] = @reservation.errors.full_messages.join(', ')
+
+  		render :new
+
+  	end
+
+  end
 
   def destroy
     auction = Auction.find(params[:id])

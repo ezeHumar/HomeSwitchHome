@@ -8,9 +8,7 @@
     <% if current_user.admin? %>
       <th>Inicio de subasta</th>
     <% end%>
-    <th>Precio actual</th>
-    <th>Mejor postor</th>
-    <th>Adjudicada a:</th>
+    <th>Precio actual ($)</th>
     <th>Accion</th>
 
   </tr>
@@ -22,22 +20,12 @@
         <% if current_user.admin? %>
           <td><%=auction.startDate%></td>
         <% end%>
-        <td><%=auction.offers.last&.amount%></td>
-        <td>
-          <% if !auction.offers.any? %>
-              <%='Nadie'%>
-          <% else %>
-            <%=auction.offers.last.user.email%>
-          <% end %>
-        </td>
 
-        <td>
-          <% if auction.user.nil? %>
-              <%='Nadie'%>
+        <% if auction.offers.last&.user == current_user %>
+          <td><%="#{auction.offers.last&.amount} (Vos!)"%></td>
           <% else %>
-            <%=auction.user.email%>
-          <% end %>
-        </td>
+            <td><%=auction.offers.last&.amount%></td>
+        <% end %>
 
 
           <% if auction.startDate > Date.today %>
@@ -70,7 +58,7 @@
     <% if current_user.admin? %>
       <th>Inicio de subasta</th>
     <% end%>
-    <th>Precio actual</th>
+    <th>Precio actual ($)</th>
     <th>Mejor postor</th>
     <th>Adjudicada a:</th>
     <th>Accion</th>
@@ -83,7 +71,15 @@
     <% if current_user.admin? %>
       <td><%=auction.startDate%></td>
     <% end%>
-    <td><%=auction.offers.last&.amount%></td>
+
+
+    <% if auction.offers.last&.user == current_user %>
+      <td><%="#{auction.offers.last&.amount} (Vos!)"%></td>
+      <% else %>
+        <td><%="#{auction.offers.last&.amount}"%></td>
+    <% end %>
+
+
     <td>
       <% if !auction.offers.any? %>
           <%='Nadie'%>
@@ -129,9 +125,7 @@
   <tr>
     <th>Residencia</th>
     <th>Fecha de reserva</th>
-    <th>Precio actual</th>
-    <th>Mejor postor</th>
-    <th>Adjudicada a:</th>
+    <th>Precio actual ($)</th>
     <% if !current_user.admin? %>
       <th>Accion</th>
     <%end%>
@@ -141,25 +135,12 @@
       <tr>
         <td><%=auction.residence.name %></td>
         <td><%=auction.reservation&.reservation_date%></td>
-        <td><%=auction.offers.last&.amount%></td>
-        <td>
-          <% if !auction.offers.any? %>
-              <%='Nadie'%>
+
+        <% if auction.offers.last&.user == current_user %>
+          <td><%="#{auction.offers.last&.amount} (Vos!)"%></td>
           <% else %>
-            <%=auction.offers.last.user.email%>
-          <% end %>
-        </td>
-        <td>
-          <% if auction.user.nil? %>
-              <%='Nadie'%>
-          <% else %>
-            <% if auction.user.admin? %>
-              <%='Nadie ganó'%>
-            <% else %>
-              <%=auction.user.email%>
-            <% end %>
-          <% end %>
-        </td>
+            <td><%=auction.offers.last&.amount%></td>
+        <% end %>
 
         <% if auction.startDate > Date.today %> <%# Si esta cerrada  %>
 
@@ -198,7 +179,6 @@
   <tr>
     <th>Residencia</th>
     <th>Fecha de reserva</th>
-    <th>Adjudicada a:</th>
 
   </tr>
   <%@auctions.order(:startDate).each do |auction|%>
@@ -206,14 +186,6 @@
       <tr>
         <td><%=auction.residence.name %></td>
         <td><%=auction.reservation&.reservation_date%></td>
-
-        <td>
-          <% if auction.user.nil? %>
-              <%='Nadie'%>
-          <% else %>
-            <%=auction.user.email%>
-          <% end %>
-        </td>
       </tr>
     <% end %>
   <%end%>
