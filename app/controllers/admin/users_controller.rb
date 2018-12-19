@@ -21,10 +21,7 @@ class Admin::UsersController < ApplicationController
 
   def give_credit
     @users.each do |user|
-      if user.created_at + 1.year > Date.today
-        user.update(credit:2)
-        redirect_to admin_users_path
+      redirect_to new_annual_payment(:id)
       end
-    end
   end
 end

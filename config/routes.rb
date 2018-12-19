@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :annual_payments
+
   resources :offers
 
   devise_for :users
