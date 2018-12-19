@@ -7,7 +7,7 @@ class AnnualPaymentsController < ApplicationController
   end
   def new
     @user.find(params[:id])
-    if @user.created_at + 1.year < @annualpayment.created_at
+    if @annualpayment.created_at + 1.year < Date.today
       @user.increment!(credit: , 2 )
       @user = AnnualPayment.new
     end
