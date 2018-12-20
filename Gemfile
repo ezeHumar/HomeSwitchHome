@@ -68,3 +68,4 @@ gem 'bootstrap-datepicker-rails'
 gem 'country_select'
 gem 'pg_search'
 gem 'countries'
+gem "default_value_for"

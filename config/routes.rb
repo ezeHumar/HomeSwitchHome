@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :residences do
       post :country_name, on: :member
     end
+
+    resources :users do
+      post :give_credit, on: :collection
+    end
     resources :auctions
     resources :users
     resources :edit
@@ -27,9 +31,7 @@ Rails.application.routes.draw do
     get :profile, on: :member
     get :week, on: :member
   end#, only: [:index] # index create edit update destroy
-  resources :users do
-    post :give_credit, on: :collection
-  end
+
   resources :reservations
   resources :search, only: [:index]
 #  resources :update

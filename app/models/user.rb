@@ -19,6 +19,10 @@ class User < ApplicationRecord
   validate :age_mayor_18_anios
   validate :fecha_futura, on: :create
 
+  default_value_for :last_credit_date do
+    Date.today - 1.year - 1.day
+  end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

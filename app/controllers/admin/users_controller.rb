@@ -20,11 +20,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def give_credit
+    @users = User.all
     @users.each do |user|
-      if user.created_at + 1.year > Date.today
-        user.update(credit:2)
-        redirect_to admin_users_path
+      if !user.last_credit_date.nil? && user.last_credit_date < Date.today - 1.year
+        user.increment!(:credit, by = 2)
+        user.update(last_credit_date: Date.today)
       end
     end
+    redirect_to admin_users_path
   end
+
 end
