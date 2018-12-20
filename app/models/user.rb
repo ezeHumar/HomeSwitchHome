@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :reservations
   has_many :auctions
   has_many :offers
+
+  has_many :AnnualPayments
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :birth_date, :expiration_credit_card, presence: true

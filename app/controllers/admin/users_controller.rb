@@ -22,12 +22,17 @@ class Admin::UsersController < ApplicationController
   def give_credit
     @users = User.all
     @users.each do |user|
+<<<<<<< HEAD
       if !user.last_credit_date.nil? && user.last_credit_date < Date.today - 1.year
         user.increment!(:credit, by = 2)
         user.update(last_credit_date: Date.today)
       end
     end
     redirect_to admin_users_path
+=======
+      redirect_to new_annual_payment(:id)
+      end
+>>>>>>> 217b2d6621ef0c270beede637d9cdb6fcc630ec8
   end
 
 end
