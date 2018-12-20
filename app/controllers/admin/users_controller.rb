@@ -23,7 +23,8 @@ class Admin::UsersController < ApplicationController
     @users = User.all
     @users.each do |user|
       if !user.last_credit_date.nil? && user.last_credit_date < Date.today - 1.year
-        user.increment!(:credit, by = 2)
+        user.increment!(:credit)
+        user.increment!(:credit)
         user.update(last_credit_date: Date.today)
       end
     end
