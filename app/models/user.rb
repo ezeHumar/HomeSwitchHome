@@ -23,7 +23,7 @@ class User < ApplicationRecord
   validate :fecha_futura, on: :create
 
   default_value_for :last_credit_date do
-    Date.today - 1.year - 1.day
+    Date.today
   end
 
   devise :database_authenticatable, :registerable,
