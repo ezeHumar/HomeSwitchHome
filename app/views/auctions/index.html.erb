@@ -13,7 +13,7 @@
 
   </tr>
   <%@auctions.order(:startDate).each do |auction|%>
-    <% if auction.startDate + 15.days > Date.today %>
+    <% if auction.startDate + 3.days > Date.today %>
       <tr>
         <td><%=auction.residence.name %></td>
         <td><%=auction.reservation&.reservation_date%></td>
@@ -101,7 +101,7 @@
     </td>
 
 
-      <% if auction.startDate + 15.days < Date.today %>
+      <% if auction.startDate + 3.days < Date.today %>
 
         <% if auction.user.nil? %>
           <td><%=button_to 'Terminar subasta', [:close, auction], class:"btn btn-seccess", data: { confirm: '¿Quiere termina la subasta?' }%></td>
@@ -131,7 +131,7 @@
     <%end%>
   </tr>
   <% @auctions.order(:startDate).each do |auction|%>
-    <% if auction.startDate + 15.days > Date.today %>
+    <% if auction.startDate + 3.days > Date.today %>
       <tr>
         <td><%=auction.residence.name %></td>
         <td><%=auction.reservation&.reservation_date%></td>

@@ -29,7 +29,7 @@
 
       <% else %>
 
-      <% if reservation.auction.startDate + 15.days < Date.today %>
+      <% if reservation.auction.startDate + 3.days < Date.today %>
 
         <% if reservation.auction.user.nil? %>
           <td><%=button_to 'Terminar subasta', [:close, reservation.auction], class:"btn btn-seccess", data: { confirm: '¿Quiere termina la subasta?' }%></td>
